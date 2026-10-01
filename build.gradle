@@ -19,6 +19,18 @@ sourceSets.main.resources {
 }
 
 repositories {
+    maven { url "https://maven.teamabnormals.com/" }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
 }
 
 base {
@@ -76,6 +88,11 @@ configurations {
 }
 
 dependencies {
+    implementation "com.teamabnormals:blueprint:${project.minecraft_version}-${project.blueprint}"
+    implementation "maven.modrinth:farmers-delight:${project.fd}"
+    implementation "maven.modrinth:brewin-and-chewin:${project.bnc}"
+    implementation "maven.modrinth:dungeons_delight:${project.dd}"
+    implementation "maven.modrinth:my-nethers-delight:${project.mnd}"
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
