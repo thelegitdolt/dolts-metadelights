@@ -92,6 +92,7 @@ dependencies {
     implementation "maven.modrinth:farmers-delight:${project.fd}"
     implementation "maven.modrinth:brewin-and-chewin:${project.bnc}"
     implementation "maven.modrinth:dungeons_delight:${project.dd}"
+    implementation "maven.modrinth:runiclib:${project.runiclib}"
     implementation "maven.modrinth:my-nethers-delight:${project.mnd}"
 }
 
