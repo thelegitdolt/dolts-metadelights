@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "dolts_metadelights:mulch_bag"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "farmersdelight:tree_bark"
+  }
+}

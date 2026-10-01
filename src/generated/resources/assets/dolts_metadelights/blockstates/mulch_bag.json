@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "dolts_metadelights:block/mulch_bag",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "dolts_metadelights:block/mulch_bag",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "dolts_metadelights:block/mulch_bag",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "dolts_metadelights:block/mulch_bag",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "dolts_metadelights:block/mulch_bag"
+    },
+    "facing=west": {
+      "model": "dolts_metadelights:block/mulch_bag",
+      "x": 90,
+      "y": 270
+    }
+  }
+}
