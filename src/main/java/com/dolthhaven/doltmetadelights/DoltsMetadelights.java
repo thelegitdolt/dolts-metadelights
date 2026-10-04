@@ -54,7 +54,7 @@ public class DoltsMetadelights {
         DMDFluids.FLUID_TYPES.register(bus);
         DMDFluids.FLUIDS.register(bus);
 
-        DMDEnchantmentEffectComponents.ENCHANTMENT_COMPONENT_TYPES.register(bus);
+        DMDEnchantEffectComponents.ENCHANTMENT_COMPONENT_TYPES.register(bus);
         DMDLootConditions.CONDITIONS.register(bus);
     }
 

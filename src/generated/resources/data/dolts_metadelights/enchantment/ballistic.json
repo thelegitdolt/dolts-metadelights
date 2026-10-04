@@ -4,12 +4,13 @@
     "translate": "enchantment.dolts_metadelights.ballistic"
   },
   "effects": {
-    "dolts_metadelights:makes_knives_throwable": {
+    "dolts_metadelights:can_throw_knife": {},
+    "dolts_metadelights:knife_bonus_damage": {
       "type": "minecraft:add",
       "value": {
         "type": "minecraft:linear",
-        "base": 6.0,
-        "per_level_above_first": 1.5
+        "base": 0.0,
+        "per_level_above_first": 4.0
       }
     }
   },

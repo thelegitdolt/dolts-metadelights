@@ -4,6 +4,8 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "ItemMixin",
+    "KnifeItemMixin",
+    "MakeKnifeThrowableItemMixin",
     "bnc.CoasterBlockEntityRendererMixin",
     "bnc.CoasterBlockMixin",
     "bnc.CoasterEntityMixin",
