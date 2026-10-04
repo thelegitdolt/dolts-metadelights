@@ -10,7 +10,7 @@
       "value": {
         "type": "minecraft:linear",
         "base": 0.0,
-        "per_level_above_first": 4.0
+        "per_level_above_first": 3.0
       }
     }
   },

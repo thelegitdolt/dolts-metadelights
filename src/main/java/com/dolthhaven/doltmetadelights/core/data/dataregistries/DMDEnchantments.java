@@ -39,7 +39,7 @@ public class DMDEnchantments {
                     EquipmentSlotGroup.MAINHAND
             )).exclusiveWith(HolderSet.direct(enchantLookup.getOrThrow(ModEnchantments.BACKSTABBING)))
                 .withSpecialEffect(DMDEnchantEffectComponents.THROWN_KNIFE_BONUS_DAMAGE.get(),
-                        new AddValue(LevelBasedValue.perLevel(0, 4f)))
+                        new AddValue(LevelBasedValue.perLevel(0, 3f)))
                 .withSpecialEffect(DMDEnchantEffectComponents.CAN_THROW.get(), Unit.INSTANCE));
     }
 
