@@ -1,6 +1,5 @@
 package com.dolthhaven.doltmetadelights.core.mixin;
 
-import com.dolthhaven.doltmetadelights.core.data.Sex;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -19,7 +18,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
-import org.joml.Quaternionf;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.spongepowered.asm.mixin.Mixin;
@@ -60,13 +58,14 @@ public abstract class CoasterBlockEntityRendererMixin implements BlockEntityRend
     @Inject(method = "render(Lumpaz/brewinandchewin/common/block/entity/CoasterBlockEntity;FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II)V",
             at = @At("HEAD"))
     private void DoltModHow$RenderCoasterNamePlate(CoasterBlockEntity entity, float tickDelta, PoseStack poseStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay, CallbackInfo ci) {
+
         if (this.renderer.cameraHitResult instanceof BlockHitResult blockHitResult) {
             BlockPos pos = blockHitResult.getBlockPos();
             if (entity.getBlockPos().equals(pos)) {
                 ItemStack stack = itemToRender(entity, blockHitResult.getLocation().toVector3f());
                 Component customName = stack.get(DataComponents.CUSTOM_NAME);
                 if (customName != null) {
-                    Sex.renderNameTag(entity, this.font, stack.getHoverName(), poseStack, this.renderer, Vec3.atCenterOf(pos), buffer, combinedLight);
+                    renderNameTag(entity, this.font, stack.getHoverName(), poseStack, this.renderer, Vec3.atCenterOf(pos), buffer, combinedLight);
                 }
             }
         }
@@ -117,4 +116,27 @@ public abstract class CoasterBlockEntityRendererMixin implements BlockEntityRend
         return ItemStack.EMPTY;
     }
 
+    private static void renderNameTag(CoasterBlockEntity entity, Font font, Component component, PoseStack poseStack, BlockEntityRenderDispatcher renderer, Vec3 position, MultiBufferSource buffer, int packedLight) {
+        double distance = renderer.camera.getPosition().distanceToSqr(position);
+        if (distance > 8) return;
+
+        float nameOffset = 1.0f;
+
+        poseStack.pushPose();
+        poseStack.translate(0.5F, nameOffset, 0.5F);
+
+        poseStack.mulPose(renderer.camera.rotation());
+        poseStack.scale(0.025F, -0.025F, -0.025F);
+
+        Matrix4f matrix4f = poseStack.last().pose();
+        float opacity = Minecraft.getInstance().options.getBackgroundOpacity(0.25F);
+        int productionOpacity = (int) (opacity * 255.0F) << 24;
+
+        float width = (float) (-font.width(component)) / 2f;
+
+        font.drawInBatch(component, width, 0, 553648127, false, matrix4f, buffer, Font.DisplayMode.SEE_THROUGH, productionOpacity, packedLight);
+        font.drawInBatch(component, width, 0, -1, false, matrix4f, buffer, Font.DisplayMode.NORMAL, 0, packedLight);
+
+        poseStack.popPose();
+    }
 }
