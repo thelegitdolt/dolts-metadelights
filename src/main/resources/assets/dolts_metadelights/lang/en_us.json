@@ -3,5 +3,8 @@
     
     "block.dolts_metadelights.glowshroom_colony": "Glowshroom Colony",
     "block.dolts_metadelights.bop_glowshroom_colony": "Glowshroom Colony",
-    "block.dolts_metadelights.toadstool_colony": "Toadstool Colony"
+    "block.dolts_metadelights.toadstool_colony": "Toadstool Colony",
+
+    "subtitles.dolt_mod_how.item.tankard.impact": "Tankard Hits",
+    "subtitles.dolt_mod_how.item.tankard.shoot": "Tankard Flies"
 }

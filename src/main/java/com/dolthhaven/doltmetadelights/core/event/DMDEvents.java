@@ -1,16 +1,20 @@
-package com.dolthhaven.doltmetadelights.core;
+package com.dolthhaven.doltmetadelights.core.event;
 
+import com.dolthhaven.doltmetadelights.DoltsMetadelights;
 import com.dolthhaven.doltmetadelights.core.other.DMDConfig;
 import com.dolthhaven.doltmetadelights.utils.Consts;
 import com.dolthhaven.doltmetadelights.utils.RegUtil;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.bus.api.Event;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
+@EventBusSubscriber(modid = DoltsMetadelights.MOD_ID)
 public class DMDEvents {
+    @SubscribeEvent
     private static void handleBulletPepper(PlayerInteractEvent.RightClickBlock event) {
         if (!DMDConfig.COMMON.killBulletPepperPlacement.get() || !ModList.get().isLoaded(Consts.MY_NETHERS_DELIGHT))
             return;
