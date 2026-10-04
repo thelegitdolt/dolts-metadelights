@@ -1,10 +1,18 @@
 {
   "required": true,
-  "package": "com.dolthhaven.doltmetadelights.mixin",
+  "package": "com.dolthhaven.doltmetadelights.core.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [],
+  "mixins": [
+    "CoasterBlockEntityRendererMixin",
+    "CoasterBlockMixin",
+    "CoasterEntityMixin",
+    "FieryFonduePotMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
+  },
+  "mixinextras": {
+    "minVersion": "0.5.0"
   },
   "overwrites": {
     "requireAnnotations": true
