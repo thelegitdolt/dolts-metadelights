@@ -9,6 +9,7 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.ModifyDefaultComponentsEvent;
@@ -32,7 +33,7 @@ public class DMDEvents {
     @SubscribeEvent
     private static void changeDefaultItemProperties(ModifyDefaultComponentsEvent event) {
         Consts.DD_WARDENZOLA.safeLookup().ifPresent(item -> event.modify(item, builder -> {
-            if (DMDConfig.COMMON.wheelifiedWardenzola.get()) builder.remove(DataComponents.FOOD);
+            if (Consts.BnC.loaded()) builder.remove(DataComponents.FOOD);
         }));
     }
 }

@@ -1,0 +1,31 @@
+{
+  "anvil_cost": 2,
+  "description": {
+    "translate": "enchantment.dolts_metadelights.ballistic"
+  },
+  "effects": {
+    "dolts_metadelights:makes_knives_throwable": {
+      "type": "minecraft:add",
+      "value": {
+        "type": "minecraft:linear",
+        "base": 6.0,
+        "per_level_above_first": 1.5
+      }
+    }
+  },
+  "exclusive_set": "farmersdelight:backstabbing",
+  "max_cost": {
+    "base": 50,
+    "per_level_above_first": 8
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 15,
+    "per_level_above_first": 9
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#farmersdelight:enchantable/knife",
+  "weight": 3
+}

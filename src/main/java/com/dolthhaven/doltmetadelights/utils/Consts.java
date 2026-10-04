@@ -45,6 +45,10 @@ public class Consts {
         public BlockResource blockResource(String path) {
             return new BlockResource(rl(path));
         }
+
+        public void isl() {
+
+        }
     }
 
     public record ItemResource(ResourceLocation loc) {

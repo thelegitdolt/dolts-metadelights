@@ -20,32 +20,33 @@
   ],
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "dolts_metadelights:wardenzola_from_wedges"
-      },
-      "trigger": "minecraft:recipe_unlocked"
-    },
-    "has_wardenzola_wedge": {
+    "has_sculk": {
       "conditions": {
         "items": [
           {
-            "items": "dolts_metadelights:wardenzola_wedge"
+            "items": "minecraft:sculk"
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "dolts_metadelights:fermenting/wardenzola"
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_the_recipe",
-      "has_wardenzola_wedge"
+      "has_sculk",
+      "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "dolts_metadelights:wardenzola_from_wedges"
+      "dolts_metadelights:fermenting/wardenzola"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }
