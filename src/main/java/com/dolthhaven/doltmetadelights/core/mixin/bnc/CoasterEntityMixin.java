@@ -1,4 +1,4 @@
-package com.dolthhaven.doltmetadelights.core.mixin;
+package com.dolthhaven.doltmetadelights.core.mixin.bnc;
 
 import com.llamalad7.mixinextras.expression.Definition;
 import com.llamalad7.mixinextras.expression.Expression;

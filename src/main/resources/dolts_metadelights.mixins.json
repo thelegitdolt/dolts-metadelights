@@ -3,10 +3,15 @@
   "package": "com.dolthhaven.doltmetadelights.core.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "CoasterBlockEntityRendererMixin",
-    "CoasterBlockMixin",
-    "CoasterEntityMixin",
-    "FieryFonduePotMixin"
+    "bnc.CoasterBlockEntityRendererMixin",
+    "bnc.CoasterBlockMixin",
+    "bnc.CoasterEntityMixin",
+    "bnc.FieryFonduePotMixin",
+    "mnd.ConsumableItemMixin",
+    "mnd.GhastaWithCreamBlockMixin",
+    "mnd.PowderyFlowerBlockMixin",
+    "mnd.RichSoilMixin",
+    "mnd.ZoglinTrophyMixin"
   ],
   "injectors": {
     "defaultRequire": 1

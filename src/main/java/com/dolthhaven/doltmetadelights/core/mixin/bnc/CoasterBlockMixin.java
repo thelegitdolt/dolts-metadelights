@@ -1,4 +1,4 @@
-package com.dolthhaven.doltmetadelights.core.mixin;
+package com.dolthhaven.doltmetadelights.core.mixin.bnc;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;

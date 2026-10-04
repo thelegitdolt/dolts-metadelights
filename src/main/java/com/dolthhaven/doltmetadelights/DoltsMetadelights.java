@@ -6,6 +6,7 @@ import com.dolthhaven.doltmetadelights.core.data.DMDRecipes;
 import com.dolthhaven.doltmetadelights.core.data.tag.DMDBlockTags;
 import com.dolthhaven.doltmetadelights.core.data.tag.DMDDataMaps;
 import com.dolthhaven.doltmetadelights.core.data.tag.DMDItemTags;
+import com.dolthhaven.doltmetadelights.core.other.DMDConfig;
 import com.dolthhaven.doltmetadelights.core.registry.DMDBlocks;
 import com.dolthhaven.doltmetadelights.core.registry.DMDItems;
 import com.mojang.logging.LogUtils;
@@ -13,6 +14,7 @@ import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.slf4j.Logger;
@@ -26,10 +28,12 @@ public class DoltsMetadelights {
 
     public DoltsMetadelights(IEventBus bus, ModContainer modContainer) {
         DMDBlocks.BLOCKS.register(bus);
-        DMDBlocks.ITEMS.register(bus);
+        DMDItems.ITEMS.register(bus);
 
         bus.addListener(this::clientSetup);
         bus.addListener(this::dataSetup);
+
+        modContainer.registerConfig(ModConfig.Type.COMMON, DMDConfig.COMMON_SPEC);
     }
 
     private void dataSetup(GatherDataEvent event) {

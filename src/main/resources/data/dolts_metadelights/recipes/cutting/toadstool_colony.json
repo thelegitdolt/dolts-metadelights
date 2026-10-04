@@ -1,0 +1,30 @@
+{
+  "type": "neoforge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "biomesoplenty"
+        }
+      ],
+      "recipe": {
+        "type": "farmersdelight:cutting",
+        "ingredients": [
+          {
+            "item": "dolt_mod_how:toadstool_colony"
+          }
+        ],
+        "tool": {
+          "tag": "farmersdelight:tools/knives"
+        },
+        "result": [
+          {
+            "item": "biomesoplenty:toadstool",
+            "count": 5
+          }
+        ]
+      }
+    }
+  ]
+}

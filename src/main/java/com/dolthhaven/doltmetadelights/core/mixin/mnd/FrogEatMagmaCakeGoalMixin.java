@@ -1,0 +1,32 @@
+package com.dolthhaven.doltmetadelights.core.mixin.mnd;
+
+import com.dolthhaven.doltmetadelights.core.other.DMDConfig;
+import com.soytutta.mynethersdelight.common.entity.ia.EatMagmaCakeGoal;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.Level;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+@Pseudo
+@Mixin(EatMagmaCakeGoal.class)
+public class FrogEatMagmaCakeGoalMixin {
+    @Inject(method = "canUse", at = @At("HEAD"), cancellable = true)
+    private void DIE(CallbackInfoReturnable<Boolean> cir) {
+        if (DMDConfig.COMMON.frogsAreNotStupid.get()) cir.setReturnValue(false);
+    }
+
+    @Redirect(method = "handleBlockInteraction", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/EntityType;create(Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/entity/Entity;"))
+    private Entity DoltModHow$FrogsCANNOTEatFuckingMagmaCakesKYS(EntityType<?> instance, Level p_20616_) {
+        return DMDConfig.COMMON.frogsAreNotStupid.get() ? null : instance.create(p_20616_);
+    }
+
+    @Redirect(method = "handleEntityInteraction", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/EntityType;create(Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/entity/Entity;"))
+    private Entity DoltModHow$aneurysm(EntityType<?> instance, Level p_20616_) {
+        return DMDConfig.COMMON.frogsAreNotStupid.get() ? null : instance.create(p_20616_);
+    }
+}

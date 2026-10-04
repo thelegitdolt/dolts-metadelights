@@ -1,0 +1,31 @@
+{
+  "type": "neoforge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "biomesoplenty"
+        }
+      ],
+      "recipe": {
+        "type": "farmersdelight:cutting",
+        "ingredients": [
+          {
+            "item": "dolts_metadelights:glowshroom_colony"
+          }
+        ],
+        "tool": {
+          "tag": "farmersdelight:tools/knives"
+        },
+        "result": [
+          {
+            "item": "quark:glow_shroom",
+            "count": 5
+          }
+        ]
+      }
+    }
+  ]
+}
+

@@ -1,4 +1,4 @@
-package com.dolthhaven.doltmetadelights.core.mixin;
+package com.dolthhaven.doltmetadelights.core.mixin.bnc;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;

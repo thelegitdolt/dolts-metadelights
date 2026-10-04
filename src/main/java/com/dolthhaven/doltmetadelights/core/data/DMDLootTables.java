@@ -2,6 +2,7 @@ package com.dolthhaven.doltmetadelights.core.data;
 
 import com.dolthhaven.doltmetadelights.DoltsMetadelights;
 import com.google.common.collect.ImmutableList;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.WritableRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -13,19 +14,36 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.ValidationContext;
+import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.loot.CanItemPerformAbility;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 
+import java.util.List;
 import java.util.Set;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.dolthhaven.doltmetadelights.core.registry.DMDBlocks.*;
 
 public class DMDLootTables extends LootTableProvider{
+    protected static final LootItemCondition.Builder IS_SHEARS = CanItemPerformAbility.canItemPerformAbility(ItemAbilities.SHEARS_HARVEST);
+
+    static List<Block> BLOCK_BLACKLIST = ImmutableList.of(BOP_GLOWSHROOM_COLONY.get(), TOADSTOOL_COLONY.get());
+
     public DMDLootTables(GatherDataEvent event) {
         super(event.getGenerator().getPackOutput(), BuiltInLootTables.all(), ImmutableList.of(
                 new LootTableProvider.SubProviderEntry(BlockLoot::new, LootContextParamSets.BLOCK)
@@ -47,11 +65,36 @@ public class DMDLootTables extends LootTableProvider{
         @Override
         protected void generate() {
             this.dropSelf(MULCH_BAG.get());
+            this.colony(GLOW_SHROOM_COLONY);
         }
 
         @Override
         public Iterable<Block> getKnownBlocks() {
-            return BuiltInRegistries.BLOCK.stream().filter(block -> DoltsMetadelights.MOD_ID.equals(BuiltInRegistries.BLOCK.getKey(block).getNamespace())).collect(Collectors.toSet());
+            return BuiltInRegistries.BLOCK.stream().filter(block -> DoltsMetadelights.MOD_ID.equals(BuiltInRegistries.BLOCK.getKey(block).getNamespace())).filter(block -> !BLOCK_BLACKLIST.contains(block)).collect(Collectors.toSet());
+        }
+
+        private void colony(Supplier<? extends Block> block) {
+            if (block.get() instanceof MushroomColonyBlock colony) {
+                Item shroomItem = colony.mushroomType.value();
+                Item colonyItem = colony.asItem();
+                this.add(block.get(), LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(AlternativesEntry.alternatives(LootItem.lootTableItem(colonyItem)
+                                                .when(stateCond(block, MushroomColonyBlock.COLONY_AGE, 3))
+                                                .when(IS_SHEARS))
+                                        .otherwise(LootItem.lootTableItem(shroomItem)
+                                                .apply(MushroomColonyBlock.COLONY_AGE.getPossibleValues(), value -> SetItemCountFunction
+                                                        .setCount(ConstantValue.exactly(2.0f + value), false)
+                                                        .when(stateCond(block, MushroomColonyBlock.COLONY_AGE, value)))))));
+            }
+            else {
+                throw new IllegalArgumentException("Not mushroom colony");
+            }
+        }
+
+        private static <V extends Comparable<V>> LootItemCondition.Builder stateCond(Supplier<? extends Block> block, Property<V> property, V v) {
+            return LootItemBlockStatePropertyCondition.hasBlockStateProperties(block.get())
+                    .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(property, v.toString()));
         }
     }
 }

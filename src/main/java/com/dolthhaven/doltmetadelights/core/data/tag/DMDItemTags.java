@@ -5,6 +5,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import vectorwing.farmersdelight.common.tag.ModTags;
 
 public class DMDItemTags extends ItemTagsProvider {
     public DMDItemTags(GatherDataEvent event, BlockTagsProvider provider) {
@@ -13,6 +14,6 @@ public class DMDItemTags extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-
+        this.copy(ModTags.Blocks.MUSHROOM_COLONIES, ModTags.Items.MUSHROOM_COLONIES);
     }
 }
