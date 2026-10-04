@@ -21,7 +21,7 @@ import java.util.List;
 public class ConsumableItemMixin {
     @Inject(method = "appendHoverText", at = @At("HEAD"), cancellable = true)
     private void DoltModHow$TOOLTIPSDIEDIEIDSNJDJKNEFNEKFNKWJNFKENKWENK(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag isAdvanced, CallbackInfo ci) {
-        Item item = RegUtil.item(Consts.MY_NETHERS_DELIGHT, "magma_cake_slice");
+        Item item = RegUtil.item(Consts.MY_NETHERS_DELIGHT.rl("magma_cake_slice"));
 
         if (item == null) return;
 

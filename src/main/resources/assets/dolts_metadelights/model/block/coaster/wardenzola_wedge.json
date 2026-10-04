@@ -1,0 +1,6 @@
+{
+  "parent": "brewinandchewin:block/coaster_cheese",
+  "textures": {
+    "cheese": "dolts_metadelights:block/coaster/wardenzola_wedge"
+  }
+}

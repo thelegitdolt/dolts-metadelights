@@ -1,0 +1,82 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": "#farmersdelight:tools/knives"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "dolts_metadelights:wardenzola",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "servings": "0"
+                  }
+                }
+              ],
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "dolts_metadelights:wardenzola",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "servings": "1"
+                  }
+                }
+              ],
+              "count": 2.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "dolts_metadelights:wardenzola",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "servings": "2"
+                  }
+                }
+              ],
+              "count": 3.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "dolts_metadelights:wardenzola",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "servings": "3"
+                  }
+                }
+              ],
+              "count": 4.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "dolts_metadelights:wardenzola_wedge"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "dolts_metadelights:blocks/wardenzola"
+}

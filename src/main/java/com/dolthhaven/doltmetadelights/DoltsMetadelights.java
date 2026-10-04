@@ -1,18 +1,17 @@
 package com.dolthhaven.doltmetadelights;
 
-import com.dolthhaven.doltmetadelights.core.data.DMDBlockStateModel;
 import com.dolthhaven.doltmetadelights.core.data.DMDLootTables;
 import com.dolthhaven.doltmetadelights.core.data.DMDRecipes;
+import com.dolthhaven.doltmetadelights.core.data.client.DMDBlockStateModel;
+import com.dolthhaven.doltmetadelights.core.data.client.DMDItemModelGen;
 import com.dolthhaven.doltmetadelights.core.data.tag.DMDBlockTags;
 import com.dolthhaven.doltmetadelights.core.data.tag.DMDDataMaps;
 import com.dolthhaven.doltmetadelights.core.data.tag.DMDItemTags;
 import com.dolthhaven.doltmetadelights.core.other.DMDConfig;
-import com.dolthhaven.doltmetadelights.core.registry.DMDBlocks;
-import com.dolthhaven.doltmetadelights.core.registry.DMDEntities;
-import com.dolthhaven.doltmetadelights.core.registry.DMDItems;
-import com.dolthhaven.doltmetadelights.core.registry.DMDSounds;
+import com.dolthhaven.doltmetadelights.core.registry.*;
 import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -34,6 +33,9 @@ public class DoltsMetadelights {
         DMDEntities.ENTITY_TYPES.register(bus);
         DMDSounds.SOUND_EVENTS.register(bus);
 
+        DMDFluids.FLUID_TYPES.register(bus);
+        DMDFluids.FLUIDS.register(bus);
+
         bus.addListener(this::clientSetup);
         bus.addListener(this::dataSetup);
 
@@ -53,9 +55,14 @@ public class DoltsMetadelights {
 
         boolean includeClient = event.includeClient();
         dataGen.addProvider(includeClient, new DMDBlockStateModel(event));
+        dataGen.addProvider(includeClient, new DMDItemModelGen(event));
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(DMDItems::setUpTabEditors);
+    }
+
+    public static ResourceLocation rl(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
 }

@@ -3,6 +3,7 @@
   "package": "com.dolthhaven.doltmetadelights.core.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "ItemMixin",
     "bnc.CoasterBlockEntityRendererMixin",
     "bnc.CoasterBlockMixin",
     "bnc.CoasterEntityMixin",

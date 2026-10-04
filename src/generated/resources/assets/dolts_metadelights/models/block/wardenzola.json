@@ -1,0 +1,8 @@
+{
+  "parent": "brewinandchewin:block/cheese_wheel_template",
+  "textures": {
+    "bottom": "dolts_metadelights:block/wardenzola_bottom",
+    "side": "dolts_metadelights:block/wardenzola_side",
+    "top": "dolts_metadelights:block/wardenzola_top"
+  }
+}

@@ -30,16 +30,16 @@ public class RichSoilMixin {
         if (level.isClientSide) return;
 
         if (DMDConfig.COMMON.doRichSoilGrowFungusColony.get()) {
-            if (ModList.get().isLoaded(Consts.MY_NETHERS_DELIGHT)) {
+            if (Consts.MY_NETHERS_DELIGHT.loaded()) {
                 if (aboveState.is(Blocks.CRIMSON_FUNGUS)) {
-                    Block block = RegUtil.block(Consts.MY_NETHERS_DELIGHT, "crimson_fungus_colony");
+                    Block block = RegUtil.block(Consts.MY_NETHERS_DELIGHT.rl("crimson_fungus_colony"));
                     if (block != null) {
                         level.setBlockAndUpdate(abovePos, block.defaultBlockState());
                         return;
                     }
                 }
                 else if (aboveState.is(Blocks.WARPED_FUNGUS)) {
-                    Block block = RegUtil.block(Consts.MY_NETHERS_DELIGHT, "warped_fungus_colony");
+                    Block block = RegUtil.block(Consts.MY_NETHERS_DELIGHT.rl("warped_fungus_colony"));
                     if (block != null) {
                         level.setBlockAndUpdate(abovePos, block.defaultBlockState());
                         return;
@@ -54,7 +54,7 @@ public class RichSoilMixin {
             return;
         }
 
-        if (ModList.get().isLoaded(Consts.BOP)) {
+        if (Consts.BOP.loaded()) {
             if (aboveLoc.equals(Consts.GLOWSHROOM_BOP)) {
                 level.setBlockAndUpdate(abovePos, DMDBlocks.BOP_GLOWSHROOM_COLONY.get().defaultBlockState());
             }

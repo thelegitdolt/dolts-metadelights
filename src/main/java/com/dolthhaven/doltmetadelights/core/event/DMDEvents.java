@@ -7,7 +7,6 @@ import com.dolthhaven.doltmetadelights.utils.RegUtil;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
@@ -16,7 +15,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 public class DMDEvents {
     @SubscribeEvent
     private static void handleBulletPepper(PlayerInteractEvent.RightClickBlock event) {
-        if (!DMDConfig.COMMON.killBulletPepperPlacement.get() || !ModList.get().isLoaded(Consts.MY_NETHERS_DELIGHT))
+        if (!DMDConfig.COMMON.killBulletPepperPlacement.get() || !Consts.MY_NETHERS_DELIGHT.loaded())
             return;
 
         ItemStack stack = event.getItemStack();

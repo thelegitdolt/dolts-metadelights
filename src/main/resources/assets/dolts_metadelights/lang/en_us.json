@@ -5,6 +5,11 @@
     "block.dolts_metadelights.bop_glowshroom_colony": "Glowshroom Colony",
     "block.dolts_metadelights.toadstool_colony": "Toadstool Colony",
 
-    "subtitles.dolt_mod_how.item.tankard.impact": "Tankard Hits",
-    "subtitles.dolt_mod_how.item.tankard.shoot": "Tankard Flies"
+    "subtitles.dolts_metadelights.item.tankard.impact": "Tankard Hits",
+    "subtitles.dolts_metadelights.item.tankard.shoot": "Tankard Flies",
+
+    "block.dolts_metadelights.wardenzola": "Wardenzola",
+    "item.dolts_metadelights.wardenzola_wedge": "Wardenzola Wedge",
+
+    "fluid_type.dolts_metadelights.wardenzola_fluid_type": "Wardenzola"
 }

@@ -2,6 +2,7 @@ package com.dolthhaven.doltmetadelights.core.registry;
 
 import com.dolthhaven.doltmetadelights.DoltsMetadelights;
 import com.dolthhaven.doltmetadelights.common.block.GlowshroomColonyBlock;
+import com.dolthhaven.doltmetadelights.integration.DMDBnCIntegration;
 import com.dolthhaven.doltmetadelights.utils.Consts;
 import com.dolthhaven.doltmetadelights.utils.RegUtil;
 import com.teamabnormals.blueprint.common.block.BlueprintDirectionalBlock;
@@ -11,6 +12,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
@@ -23,6 +25,9 @@ public class DMDBlocks {
     public static final DeferredBlock<Block> MULCH_BAG = BLOCKS.createBlock("mulch_bag", () ->
             new BlueprintDirectionalBlock(BlockBehaviour.Properties.ofFullCopy(ModBlocks.RICE_BAG.get()).mapColor(MapColor.COLOR_BROWN)));
 
+
+    public static final DeferredBlock<Block> WARDENZOLA = BLOCKS.createBlock("wardenzola", Consts.BnC.loaded() ?
+            DMDBnCIntegration.WARDENZOLA : () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CAKE)));
 
     public static final DeferredBlock<Block> GLOW_SHROOM_COLONY = BLOCKS.createBlockNoItem("glow_shroom_colony", () ->
             new GlowshroomColonyBlock(DMDProps.GLOW_SHROOM_COLONY));

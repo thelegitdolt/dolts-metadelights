@@ -1,7 +1,8 @@
-package com.dolthhaven.doltmetadelights.core.data;
+package com.dolthhaven.doltmetadelights.core.data.client;
 
 import com.dolthhaven.doltmetadelights.DoltsMetadelights;
 import com.dolthhaven.doltmetadelights.core.registry.DMDBlocks;
+import com.dolthhaven.doltmetadelights.utils.Consts;
 import com.teamabnormals.blueprint.core.data.client.BlueprintBlockStateProvider;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -9,6 +10,7 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import umpaz.brewinandchewin.common.block.CheeseWheelBlock;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 
 import java.util.function.Supplier;
@@ -26,6 +28,8 @@ public class DMDBlockStateModel extends BlueprintBlockStateProvider {
         this.colony(GLOW_SHROOM_COLONY);
         this.colony(BOP_GLOWSHROOM_COLONY);
         this.colony(TOADSTOOL_COLONY);
+
+        this.cheese(WARDENZOLA);
     }
 
     private void colony(Supplier<Block> blockSupplier) {
@@ -37,6 +41,22 @@ public class DMDBlockStateModel extends BlueprintBlockStateProvider {
                             .cross(name(block) + "_stage" + age, blockTexture(block).withSuffix("_stage" + age)).renderType("cutout")).build();
                 });
         basicItemWithWeirdPath(id(block).getPath(), blockTexture(block).withSuffix("_stage3"));
+    }
+
+    private void cheese(Supplier<Block> blockGetter) {
+        Block block = blockGetter.get();
+        this.getVariantBuilder(block).forAllStates(state -> {
+            int servingsCount = state.getValue(CheeseWheelBlock.SERVINGS);
+            String serve = servingsCount == 0 ? "" : String.valueOf(servingsCount);
+
+            ResourceLocation cheeseLoc = blockTexture(block);
+            var thing = this.models()
+                    .withExistingParent("wardenzola" + serve, Consts.BnC.rl("block/cheese_wheel_template" + serve))
+                    .texture("top", cheeseLoc.withSuffix("_top"))
+                    .texture("bottom", cheeseLoc.withSuffix("_bottom"))
+                    .texture("side", cheeseLoc.withSuffix("_side"));
+            return ConfiguredModel.builder().modelFile(servingsCount == 0 ? thing : thing.texture("inside", cheeseLoc.withSuffix("_inside"))).build();
+        });
     }
 
     private ResourceLocation id(Block block) {

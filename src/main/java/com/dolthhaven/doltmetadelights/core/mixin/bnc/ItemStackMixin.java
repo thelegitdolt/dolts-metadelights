@@ -23,7 +23,7 @@ public class ItemStackMixin {
     @Inject(method = "use", at = @At("HEAD"), cancellable = true)
     private void sex(Level level, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
         ItemStack handStack = player.getItemInHand(hand);
-        if (ModList.get().isLoaded(Consts.BnC) && DMDBnCIntegration.canShootTankard(player, handStack)) {
+        if (Consts.BnC.loaded() && DMDBnCIntegration.canShootTankard(player, handStack)) {
             level.playSound(null, player.getX(), player.getY(), player.getZ(), DMDSounds.TANKARD_SHOOTS.get(), SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
             if (!level.isClientSide) {
                 ThrownTankardEntity tankard = new ThrownTankardEntity(level, player);

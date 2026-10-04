@@ -26,7 +26,7 @@ public abstract class PowderyFlowerBlockMixin extends BushBlock {
 
     @Inject(method = "getCloneItemStack", at = @At("HEAD"), cancellable = true, remap = false)
     private void DoltModHow$CopyPowderyCaneLol(LevelReader level, BlockPos pos, BlockState state, CallbackInfoReturnable<ItemStack> cir) {
-        Item item = RegUtil.item(Consts.MY_NETHERS_DELIGHT, "powder_cannon");
+        Item item = RegUtil.item(Consts.MY_NETHERS_DELIGHT.rl("powder_cannon"));
 
         if (item == null) return;
         if (DMDConfig.COMMON.killBulletPepperPlacement.get()) cir.setReturnValue(new ItemStack(item));

@@ -2,6 +2,7 @@ package com.dolthhaven.doltmetadelights.core.data;
 
 import com.dolthhaven.doltmetadelights.DoltsMetadelights;
 import com.google.common.collect.ImmutableList;
+import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.WritableRegistry;
@@ -25,11 +26,14 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.loot.CanItemPerformAbility;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import umpaz.brewinandchewin.common.block.CheeseWheelBlock;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
+import vectorwing.farmersdelight.common.tag.ModTags;
 
 import java.util.List;
 import java.util.Set;
@@ -40,6 +44,7 @@ import java.util.stream.Stream;
 import static com.dolthhaven.doltmetadelights.core.registry.DMDBlocks.*;
 
 public class DMDLootTables extends LootTableProvider{
+    protected static final LootItemCondition.Builder HAS_KNIFE = MatchTool.toolMatches(ItemPredicate.Builder.item().of(ModTags.Items.KNIVES));
     protected static final LootItemCondition.Builder IS_SHEARS = CanItemPerformAbility.canItemPerformAbility(ItemAbilities.SHEARS_HARVEST);
 
     static List<Block> BLOCK_BLACKLIST = ImmutableList.of(BOP_GLOWSHROOM_COLONY.get(), TOADSTOOL_COLONY.get());
@@ -66,6 +71,8 @@ public class DMDLootTables extends LootTableProvider{
         protected void generate() {
             this.dropSelf(MULCH_BAG.get());
             this.colony(GLOW_SHROOM_COLONY);
+
+            this.cheese(WARDENZOLA);
         }
 
         @Override
@@ -89,6 +96,20 @@ public class DMDLootTables extends LootTableProvider{
             }
             else {
                 throw new IllegalArgumentException("Not mushroom colony");
+            }
+        }
+
+        private void cheese(Supplier<? extends Block> wheel) {
+            if (wheel.get() instanceof CheeseWheelBlock cheese) {
+                Item wedge = cheese.cheeseWedgeType.get();
+                this.add(wheel.get(), LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(wedge).apply(CheeseWheelBlock.SERVINGS.getPossibleValues(), value -> SetItemCountFunction
+                                                .setCount(ConstantValue.exactly(value + 1), false).when(stateCond(wheel, CheeseWheelBlock.SERVINGS, value)))
+                                        .when(HAS_KNIFE))));
+            }
+            else {
+                throw new IllegalArgumentException("Not cheese");
             }
         }
 

@@ -34,7 +34,7 @@ public class ThrownTankardEntity extends ThrowableItemProjectile {
 
     @Override
     protected @NotNull Item getDefaultItem() {
-        return ModList.get().isLoaded(Consts.BnC) ?
+        return Consts.BnC.loaded() ?
                 DMDBnCIntegration.tankard() : Items.BOWL;
     }
 
