@@ -27,7 +27,7 @@ import static com.dolthhaven.doltmetadelights.core.registry.DMDBlocks.MULCH_BAG;
 public class DMDItems {
     public static final ItemSubRegistryHelper ITEMS = DoltsMetadelights.REGISTRY_HELPER.getItemSubHelper();
 
-    public static final DeferredItem<Item> GLOW_SHROOM_COLONY = ITEMS.createItem("glow_shroom_colony", () -> new MushroomColonyItem(DMDBlocks.BOP_GLOWSHROOM_COLONY.get(), new Item.Properties()));
+    public static final DeferredItem<Item> GLOW_SHROOM_COLONY = ITEMS.createItem("glow_shroom_colony", () -> new MushroomColonyItem(DMDBlocks.GLOW_SHROOM_COLONY.get(), new Item.Properties()));
     public static final DeferredItem<Item> BOP_GLOWSHROOM_COLONY = ITEMS.createItem("bop_glowshroom_colony", () -> new MushroomColonyItem(DMDBlocks.BOP_GLOWSHROOM_COLONY.get(), new Item.Properties()));
     public static final DeferredItem<Item> TOADSTOOL_COLONY = ITEMS.createItem("toadstool_colony", () -> new MushroomColonyItem(DMDBlocks.TOADSTOOL_COLONY.get(), new Item.Properties()));
 

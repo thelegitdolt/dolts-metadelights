@@ -1,16 +1,16 @@
 {
   "variants": {
     "age=0": {
-      "model": "dolts_metadelights:block/bop_glowshroom_colony"
+      "model": "dolts_metadelights:block/bop_glowshroom_colony_stage0"
     },
     "age=1": {
-      "model": "dolts_metadelights:block/bop_glowshroom_colony"
+      "model": "dolts_metadelights:block/bop_glowshroom_colony_stage1"
     },
     "age=2": {
-      "model": "dolts_metadelights:block/bop_glowshroom_colony"
+      "model": "dolts_metadelights:block/bop_glowshroom_colony_stage2"
     },
     "age=3": {
-      "model": "dolts_metadelights:block/bop_glowshroom_colony"
+      "model": "dolts_metadelights:block/bop_glowshroom_colony_stage3"
     }
   }
 }

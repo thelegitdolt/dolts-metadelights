@@ -5,13 +5,11 @@ import com.dolthhaven.doltmetadelights.common.entity.ThrownTankardEntity;
 import com.teamabnormals.blueprint.core.util.registry.EntitySubRegistryHelper;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-@EventBusSubscriber(modid = DoltsMetadelights.MOD_ID)
 public class DMDEntities {
     public static final EntitySubRegistryHelper ENTITY_TYPES = DoltsMetadelights.REGISTRY_HELPER.getEntitySubHelper();
 
     public static final DeferredHolder<EntityType<?>, EntityType<ThrownTankardEntity>> THROWN_TANKARD = ENTITY_TYPES.createEntity("thrown_tankard", ThrownTankardEntity::new, MobCategory.MISC,
-            builder -> builder.sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).build("thrown_tankard"));
+            builder -> builder.sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10));
 }

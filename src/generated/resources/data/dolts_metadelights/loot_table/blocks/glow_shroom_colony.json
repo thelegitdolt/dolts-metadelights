@@ -22,7 +22,7 @@
                   "condition": "neoforge:can_item_perform_ability"
                 }
               ],
-              "name": "minecraft:air"
+              "name": "dolts_metadelights:glow_shroom_colony"
             },
             {
               "type": "minecraft:item",

@@ -34,7 +34,7 @@ public class DMDBlockStateModel extends BlueprintBlockStateProvider {
                 .forAllStates(blockState -> {
                     int age = blockState.getValue(MushroomColonyBlock.COLONY_AGE);
                     return ConfiguredModel.builder().modelFile(this.models()
-                            .cross(name(block), blockTexture(block).withSuffix("_stage" + age))).build();
+                            .cross(name(block) + "_stage" + age, blockTexture(block).withSuffix("_stage" + age)).renderType("cutout")).build();
                 });
         basicItemWithWeirdPath(id(block).getPath(), blockTexture(block).withSuffix("_stage3"));
     }

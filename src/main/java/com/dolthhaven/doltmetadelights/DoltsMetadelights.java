@@ -10,6 +10,7 @@ import com.dolthhaven.doltmetadelights.core.other.DMDConfig;
 import com.dolthhaven.doltmetadelights.core.registry.DMDBlocks;
 import com.dolthhaven.doltmetadelights.core.registry.DMDEntities;
 import com.dolthhaven.doltmetadelights.core.registry.DMDItems;
+import com.dolthhaven.doltmetadelights.core.registry.DMDSounds;
 import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import net.neoforged.bus.api.IEventBus;
@@ -31,6 +32,7 @@ public class DoltsMetadelights {
         DMDBlocks.BLOCKS.register(bus);
         DMDItems.ITEMS.register(bus);
         DMDEntities.ENTITY_TYPES.register(bus);
+        DMDSounds.SOUND_EVENTS.register(bus);
 
         bus.addListener(this::clientSetup);
         bus.addListener(this::dataSetup);
