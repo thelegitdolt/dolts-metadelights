@@ -33,9 +33,9 @@ public class DMDBlocks {
             new GlowshroomColonyBlock(DMDProps.GLOW_SHROOM_COLONY));
 
     public static final DeferredBlock<Block> BOP_GLOWSHROOM_COLONY = BLOCKS.createBlockNoItem("bop_glowshroom_colony", () ->
-            new MushroomColonyBlock(RegUtil.itemHolderOr(Consts.GLOWSHROOM_BOP, Items.RED_MUSHROOM), DMDProps.BOP_GLOWSHROOM_COLONY));
+            new MushroomColonyBlock(RegUtil.itemHolderOr(Consts.GLOWSHROOM_BOP.loc(), Items.RED_MUSHROOM), DMDProps.BOP_GLOWSHROOM_COLONY));
     public static final DeferredBlock<Block> TOADSTOOL_COLONY = BLOCKS.createBlockNoItem("toadstool_colony", () ->
-            new MushroomColonyBlock(RegUtil.itemHolderOr(Consts.GLOWSHROOM_BOP, Items.BROWN_MUSHROOM), BlockBehaviour.Properties.ofFullCopy(Blocks.BROWN_MUSHROOM)));
+            new MushroomColonyBlock(RegUtil.itemHolderOr(Consts.GLOWSHROOM_BOP.loc(), Items.BROWN_MUSHROOM), BlockBehaviour.Properties.ofFullCopy(Blocks.BROWN_MUSHROOM)));
 
     public static class DMDProps {
         public static final BlockBehaviour.Properties BOP_GLOWSHROOM_COLONY = BlockBehaviour.Properties.ofFullCopy(Blocks.RED_MUSHROOM).mapColor(GLOW_LICHEN).lightLevel(state -> 6);

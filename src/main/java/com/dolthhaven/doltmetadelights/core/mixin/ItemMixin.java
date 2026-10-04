@@ -25,7 +25,7 @@ public class ItemMixin {
 
         if (result == InteractionResult.PASS) {
             Item self = (Item) (Object) this;
-            if (Consts.DUNGEONS_DELIGHT.loaded() && DMDConfig.COMMON.wheelifiedWardenzola.get() && self.builtInRegistryHolder().is(Consts.DD_WARDENZOLA)) {
+            if (Consts.DUNGEONS_DELIGHT.loaded() && DMDConfig.COMMON.wheelifiedWardenzola.get() && self == Consts.DD_WARDENZOLA.lookup()) {
                 BlockPlaceContext context = new BlockPlaceContext(useOnContext);
                 InteractionResult newResult = ((BlockItem) DMDBlocks.WARDENZOLA.asItem()).place(context);
                 if (newResult.consumesAction()) {

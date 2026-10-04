@@ -43,7 +43,7 @@ public class DMDItems {
                 .addItemsAfter(ofModLoaded(ModItems.RED_MUSHROOM_COLONY.get(), Consts.BOP.id()), TOADSTOOL_COLONY, BOP_GLOWSHROOM_COLONY)
 
                 .predicate(DMDItems::dungeonsDelightPredicate)
-                .addItemsAfter(ofID(Consts.DD_WARDENZOLA), WARDENZOLA_WEDGE);
+                .addItemsAfter(ofID(Consts.DD_WARDENZOLA.loc()), WARDENZOLA_WEDGE);
     }
 
     public static boolean fdPredicate(BuildCreativeModeTabContentsEvent event) {

@@ -56,7 +56,7 @@ public class DMDConfig {
 
             builder.push("Brewing and Chewing Wardenzola");
             wheelifiedWardenzola = builder.comment("If Wardenzola Dungeons Delight Should be Brewing and Chewingified; this means that they are placeable and have a keg recipe, as well as wedges.")
-                    .define("Wardenzola Wheel", false);
+                    .define("Wardenzola Wheel", true);
             builder.pop();
 
             builder.pop();

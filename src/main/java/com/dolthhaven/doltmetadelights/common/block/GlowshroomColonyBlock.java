@@ -19,7 +19,7 @@ import javax.annotation.Nonnull;
 
 public class GlowshroomColonyBlock extends MushroomColonyBlock {
     public GlowshroomColonyBlock(Properties properties) {
-        super(RegUtil.itemHolderOr(Consts.GLOW_SHROOM, Items.RED_MUSHROOM), properties);
+        super(RegUtil.itemHolderOr(Consts.GLOW_SHROOM.loc(), Items.RED_MUSHROOM), properties);
     }
 
     @Override
