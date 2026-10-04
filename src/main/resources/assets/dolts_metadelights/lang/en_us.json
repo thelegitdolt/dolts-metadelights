@@ -1,3 +1,7 @@
 {
-    "block.dolts_metadelights.mulch_bag": "Mulch Bag"
+    "block.dolts_metadelights.mulch_bag": "Mulch Bag",
+    
+    "block.dolts_metadelights.glowshroom_colony": "Glowshroom Colony",
+    "block.dolts_metadelights.bop_glowshroom_colony": "Glowshroom Colony",
+    "block.dolts_metadelights.toadstool_colony": "Toadstool Colony"
 }

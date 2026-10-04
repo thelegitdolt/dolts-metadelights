@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "dolts_metadelights:block/glow_shroom_colony"
+    },
+    "age=1": {
+      "model": "dolts_metadelights:block/glow_shroom_colony"
+    },
+    "age=2": {
+      "model": "dolts_metadelights:block/glow_shroom_colony"
+    },
+    "age=3": {
+      "model": "dolts_metadelights:block/glow_shroom_colony"
+    }
+  }
+}

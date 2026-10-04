@@ -1,0 +1,96 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "dolts_metadelights:glow_shroom_colony",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "age": "3"
+                  }
+                },
+                {
+                  "ability": "shears_harvest",
+                  "condition": "neoforge:can_item_perform_ability"
+                }
+              ],
+              "name": "minecraft:air"
+            },
+            {
+              "type": "minecraft:item",
+              "functions": [
+                {
+                  "add": false,
+                  "conditions": [
+                    {
+                      "block": "dolts_metadelights:glow_shroom_colony",
+                      "condition": "minecraft:block_state_property",
+                      "properties": {
+                        "age": "0"
+                      }
+                    }
+                  ],
+                  "count": 2.0,
+                  "function": "minecraft:set_count"
+                },
+                {
+                  "add": false,
+                  "conditions": [
+                    {
+                      "block": "dolts_metadelights:glow_shroom_colony",
+                      "condition": "minecraft:block_state_property",
+                      "properties": {
+                        "age": "1"
+                      }
+                    }
+                  ],
+                  "count": 3.0,
+                  "function": "minecraft:set_count"
+                },
+                {
+                  "add": false,
+                  "conditions": [
+                    {
+                      "block": "dolts_metadelights:glow_shroom_colony",
+                      "condition": "minecraft:block_state_property",
+                      "properties": {
+                        "age": "2"
+                      }
+                    }
+                  ],
+                  "count": 4.0,
+                  "function": "minecraft:set_count"
+                },
+                {
+                  "add": false,
+                  "conditions": [
+                    {
+                      "block": "dolts_metadelights:glow_shroom_colony",
+                      "condition": "minecraft:block_state_property",
+                      "properties": {
+                        "age": "3"
+                      }
+                    }
+                  ],
+                  "count": 5.0,
+                  "function": "minecraft:set_count"
+                }
+              ],
+              "name": "minecraft:red_mushroom"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "dolts_metadelights:blocks/glow_shroom_colony"
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "dolts_metadelights:block/toadstool_colony_stage3"
+  }
+}

@@ -2,17 +2,19 @@ package com.dolthhaven.doltmetadelights.common.block;
 
 import com.dolthhaven.doltmetadelights.utils.Consts;
 import com.dolthhaven.doltmetadelights.utils.RegUtil;
-import com.google.common.base.Suppliers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 
@@ -20,7 +22,7 @@ import javax.annotation.Nonnull;
 
 public class GlowshroomColonyBlock extends MushroomColonyBlock {
     public GlowshroomColonyBlock(Properties properties) {
-        super(BuiltInRegistries.ITEM.getHolderOrThrow(ResourceKey.create(Registries.ITEM, Consts.GLOW_SHROOM)), properties);
+        super(RegUtil.itemHolderOr(Consts.GLOW_SHROOM, Items.RED_MUSHROOM), properties);
     }
 
     @Override

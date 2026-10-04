@@ -2,8 +2,11 @@ package com.dolthhaven.doltmetadelights.core.registry;
 
 import com.dolthhaven.doltmetadelights.DoltsMetadelights;
 import com.dolthhaven.doltmetadelights.common.block.GlowshroomColonyBlock;
+import com.dolthhaven.doltmetadelights.utils.Consts;
+import com.dolthhaven.doltmetadelights.utils.RegUtil;
 import com.teamabnormals.blueprint.common.block.BlueprintDirectionalBlock;
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -25,9 +28,9 @@ public class DMDBlocks {
             new GlowshroomColonyBlock(DMDProps.GLOW_SHROOM_COLONY));
 
     public static final DeferredBlock<Block> BOP_GLOWSHROOM_COLONY = BLOCKS.createBlockNoItem("bop_glowshroom_colony", () ->
-            new MushroomColonyBlock(DMDProps.BOP_GLOWSHROOM_COLONY, DMHBopCompat.glowshroom()));
+            new MushroomColonyBlock(RegUtil.itemHolderOr(Consts.GLOWSHROOM_BOP, Items.RED_MUSHROOM), DMDProps.BOP_GLOWSHROOM_COLONY));
     public static final DeferredBlock<Block> TOADSTOOL_COLONY = BLOCKS.createBlockNoItem("toadstool_colony", () ->
-            new MushroomColonyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BROWN_MUSHROOM), DMHBopCompat.toadstool()));
+            new MushroomColonyBlock(RegUtil.itemHolderOr(Consts.GLOWSHROOM_BOP, Items.BROWN_MUSHROOM), BlockBehaviour.Properties.ofFullCopy(Blocks.BROWN_MUSHROOM)));
 
     public static class DMDProps {
         public static final BlockBehaviour.Properties BOP_GLOWSHROOM_COLONY = BlockBehaviour.Properties.ofFullCopy(Blocks.RED_MUSHROOM).mapColor(GLOW_LICHEN).lightLevel(state -> 6);

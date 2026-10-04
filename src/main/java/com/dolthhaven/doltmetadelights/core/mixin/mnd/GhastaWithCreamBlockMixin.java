@@ -1,6 +1,5 @@
 package com.dolthhaven.doltmetadelights.core.mixin.mnd;
 
-import com.dolthhaven.doltmetadelights.core.other.DMDConfig;
 import com.soytutta.mynethersdelight.common.block.feasts.GhastaWithCreamBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class GhastaWithCreamBlockMixin {
     @Inject(method = "isRandomlyTicking", at = @At("HEAD"), cancellable = true)
     private void sex(BlockState state, CallbackInfoReturnable<Boolean> cir) {
-        if (!DMDConfig.COMMON.ghastaWithCreamDoesntRegenerate.get()) return;
+//        if (!DMDConfig.COMMON.ghastaWithCreamDoesntRegenerate.get()) return;
         cir.setReturnValue(false);
     }
 }

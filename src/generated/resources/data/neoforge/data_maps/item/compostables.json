@@ -1,6 +1,15 @@
 {
   "values": {
+    "dolts_metadelights:bop_glowshroom_colony": {
+      "chance": 1.0
+    },
+    "dolts_metadelights:glow_shroom_colony": {
+      "chance": 1.0
+    },
     "dolts_metadelights:mulch_bag": {
+      "chance": 1.0
+    },
+    "dolts_metadelights:toadstool_colony": {
       "chance": 1.0
     }
   }

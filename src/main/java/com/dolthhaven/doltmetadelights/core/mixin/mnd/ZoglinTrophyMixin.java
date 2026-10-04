@@ -23,13 +23,13 @@ public class ZoglinTrophyMixin extends Block  {
 
     @Inject(method = "isRandomlyTicking", at = @At("HEAD"), cancellable = true)
     private void sex(BlockState state, CallbackInfoReturnable<Boolean> cir) {
-        if (!DMDConfig.COMMON.hoglinMountDoesntTick.get()) return;
+//        if (!DMDConfig.COMMON.hoglinMountDoesntTick.get()) return;
         cir.setReturnValue(false);
     }
 
     @Inject(method = "animateTick", at = @At("HEAD"),  cancellable = true)
     private void amogus(BlockState state, Level level, BlockPos pos, RandomSource random, CallbackInfo ci) {
-        if (!DMDConfig.COMMON.hoglinMountDoesntTick.get()) return;
+//        if (!DMDConfig.COMMON.hoglinMountDoesntTick.get()) return;
         super.animateTick(state, level, pos, random);
         ci.cancel();
     }

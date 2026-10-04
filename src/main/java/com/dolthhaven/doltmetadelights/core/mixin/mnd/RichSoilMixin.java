@@ -55,9 +55,6 @@ public class RichSoilMixin {
         }
 
         if (ModList.get().isLoaded(Consts.BOP)) {
-            Block bopGlowshroom = RegUtil.block(Consts.GLOWSHROOM_BOP);
-            Block toadStool = RegUtil.block(Consts.TOADSTOOL_BOP);
-
             if (aboveLoc.equals(Consts.GLOWSHROOM_BOP)) {
                 level.setBlockAndUpdate(abovePos, DMDBlocks.BOP_GLOWSHROOM_COLONY.get().defaultBlockState());
             }

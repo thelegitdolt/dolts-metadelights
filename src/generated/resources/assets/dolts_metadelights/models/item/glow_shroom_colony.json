@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "dolts_metadelights:block/glow_shroom_colony_stage3"
+  }
+}

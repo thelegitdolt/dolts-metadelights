@@ -1,5 +1,6 @@
 package com.dolthhaven.doltmetadelights.utils;
 
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -14,6 +15,19 @@ public class RegUtil {
 
     public static Item item(String namespace, String path) {
         return item(ResourceLocation.fromNamespaceAndPath(namespace, path));
+    }
+
+    public static Holder<Item> itemHolder(ResourceLocation location) {
+        return BuiltInRegistries.ITEM.getHolder(location).orElse(null);
+    }
+
+    public static Holder<Item> itemHolderOr(ResourceLocation location, Item item) {
+        return BuiltInRegistries.ITEM.getHolder(location).orElse(item.builtInRegistryHolder());
+    }
+
+
+    public static Holder<Item> itemHolder(String namespace, String path) {
+        return itemHolder(ResourceLocation.fromNamespaceAndPath(namespace, path));
     }
 
     public static Block block(ResourceLocation location) {

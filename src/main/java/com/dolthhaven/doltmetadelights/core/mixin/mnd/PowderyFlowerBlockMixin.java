@@ -31,10 +31,10 @@ public abstract class PowderyFlowerBlockMixin extends BushBlock {
         if (item == null) return;
         if (DMDConfig.COMMON.killBulletPepperPlacement.get()) cir.setReturnValue(new ItemStack(item));
     }
-
-    @Override
-    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state, boolean bool) {
-        if (DMDConfig.COMMON.killBulletPepperPlacement.get()) return false;
-        else return super.isValidBonemealTarget(level, pos, state, bool);
-    }
+//
+//    @Override
+//    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state, boolean bool) {
+//        if (DMDConfig.COMMON.killBulletPepperPlacement.get()) return false;
+//        else return super.isValidBonemealTarget(level, pos, state, bool);
+//    }
 }
