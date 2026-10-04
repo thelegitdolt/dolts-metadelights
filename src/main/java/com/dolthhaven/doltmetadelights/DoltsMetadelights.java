@@ -28,6 +28,15 @@ public class DoltsMetadelights {
     public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
 
     public DoltsMetadelights(IEventBus bus, ModContainer modContainer) {
+        registerToAllRegistries(bus);
+
+        bus.addListener(this::clientSetup);
+        bus.addListener(this::dataSetup);
+
+        modContainer.registerConfig(ModConfig.Type.COMMON, DMDConfig.COMMON_SPEC);
+    }
+
+    private static void registerToAllRegistries(IEventBus bus) {
         DMDBlocks.BLOCKS.register(bus);
         DMDItems.ITEMS.register(bus);
         DMDEntities.ENTITY_TYPES.register(bus);
@@ -36,10 +45,7 @@ public class DoltsMetadelights {
         DMDFluids.FLUID_TYPES.register(bus);
         DMDFluids.FLUIDS.register(bus);
 
-        bus.addListener(this::clientSetup);
-        bus.addListener(this::dataSetup);
-
-        modContainer.registerConfig(ModConfig.Type.COMMON, DMDConfig.COMMON_SPEC);
+        DMDLootConditions.CONDITIONS.register(bus);
     }
 
     private void dataSetup(GatherDataEvent event) {

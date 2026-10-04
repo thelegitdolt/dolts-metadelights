@@ -2,6 +2,7 @@ package com.dolthhaven.doltmetadelights.utils;
 
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.fml.ModList;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 
 public class Consts {
     public static final ModId BnC = new ModId("brewinandchewin");
@@ -27,6 +28,10 @@ public class Consts {
 
         public ResourceLocation rl(String path) {
             return ResourceLocation.fromNamespaceAndPath(id, path);
+        }
+
+        public ModLoadedCondition requiresLoaded() {
+            return new ModLoadedCondition(id);
         }
     }
 }

@@ -47,14 +47,15 @@ public class DMDBlockStateModel extends BlueprintBlockStateProvider {
         Block block = blockGetter.get();
         this.getVariantBuilder(block).forAllStates(state -> {
             int servingsCount = state.getValue(CheeseWheelBlock.SERVINGS);
-            String serve = servingsCount == 0 ? "" : String.valueOf(servingsCount);
+            String serve = servingsCount == 3 ? "" : String.valueOf(3 - servingsCount);
 
             ResourceLocation cheeseLoc = blockTexture(block);
             var thing = this.models()
                     .withExistingParent("wardenzola" + serve, Consts.BnC.rl("block/cheese_wheel_template" + serve))
                     .texture("top", cheeseLoc.withSuffix("_top"))
                     .texture("bottom", cheeseLoc.withSuffix("_bottom"))
-                    .texture("side", cheeseLoc.withSuffix("_side"));
+                    .texture("side", cheeseLoc.withSuffix("_side"))
+                    .texture("particle", cheeseLoc.withSuffix("_top"));
             return ConfiguredModel.builder().modelFile(servingsCount == 0 ? thing : thing.texture("inside", cheeseLoc.withSuffix("_inside"))).build();
         });
     }

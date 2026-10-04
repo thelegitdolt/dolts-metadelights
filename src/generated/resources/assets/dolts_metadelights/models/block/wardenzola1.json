@@ -3,6 +3,7 @@
   "textures": {
     "bottom": "dolts_metadelights:block/wardenzola_bottom",
     "inside": "dolts_metadelights:block/wardenzola_inside",
+    "particle": "dolts_metadelights:block/wardenzola_top",
     "side": "dolts_metadelights:block/wardenzola_side",
     "top": "dolts_metadelights:block/wardenzola_top"
   }

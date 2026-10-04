@@ -1,5 +1,9 @@
 package com.dolthhaven.doltmetadelights.core.mixin;
 
+import com.dolthhaven.doltmetadelights.core.other.DMDConfig;
+import com.dolthhaven.doltmetadelights.core.registry.DMDBlocks;
+import com.dolthhaven.doltmetadelights.core.registry.DMDItems;
+import com.dolthhaven.doltmetadelights.utils.Consts;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.BlockItem;
@@ -20,15 +24,14 @@ public class ItemMixin {
         InteractionResult result = cir.getReturnValue();
 
         if (result == InteractionResult.PASS) {
-//            Item self = (Item) (Object) this;
-//            Pair<Supplier<Boolean>, BlockItem> pair = ITEM_PLACE_MAP.get(self);
-//            if (pair != null && pair.getFirst().get()) {
-//                BlockPlaceContext context = new BlockPlaceContext(useOnContext);
-//                InteractionResult newResult = pair.getSecond().place(context);
-//                if (newResult.consumesAction()) {
-//                    cir.setReturnValue(newResult);
-//                }
-//            }
+            Item self = (Item) (Object) this;
+            if (Consts.DUNGEONS_DELIGHT.loaded() && DMDConfig.COMMON.wheelifiedWardenzola.get() && self.builtInRegistryHolder().is(Consts.DD_WARDENZOLA)) {
+                BlockPlaceContext context = new BlockPlaceContext(useOnContext);
+                InteractionResult newResult = ((BlockItem) DMDBlocks.WARDENZOLA.asItem()).place(context);
+                if (newResult.consumesAction()) {
+                    cir.setReturnValue(newResult);
+                }
+            }
         }
     }
 }

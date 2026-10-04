@@ -1,0 +1,40 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:and",
+      "values": [
+        {
+          "type": "dolts_metadelights:config",
+          "value": "placeable_wardenzola"
+        },
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "dungeonsdelight"
+        }
+      ]
+    }
+  ],
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "dungeonsdelight:wardenzola"
+    }
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 4,
+        "id": "dolts_metadelights:wardenzola_wedge"
+      }
+    }
+  ],
+  "tool": [
+    {
+      "type": "farmersdelight:item_ability",
+      "action": "knife_dig"
+    },
+    {
+      "tag": "c:tools/knife"
+    }
+  ]
+}

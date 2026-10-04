@@ -1,0 +1,32 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:and",
+      "values": [
+        {
+          "type": "dolts_metadelights:config",
+          "value": "placeable_wardenzola"
+        },
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "dungeonsdelight"
+        }
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "dolts_metadelights:wardenzola_wedge"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 1,
+    "id": "dungeonsdelight:wardenzola"
+  }
+}

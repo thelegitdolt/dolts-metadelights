@@ -1,0 +1,47 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:and",
+      "values": [
+        {
+          "type": "dolts_metadelights:config",
+          "value": "placeable_wardenzola"
+        },
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "dungeonsdelight"
+        }
+      ]
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "dolts_metadelights:wardenzola_from_wedges"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wardenzola_wedge": {
+      "conditions": {
+        "items": [
+          {
+            "items": "dolts_metadelights:wardenzola_wedge"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_wardenzola_wedge"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "dolts_metadelights:wardenzola_from_wedges"
+    ]
+  }
+}
