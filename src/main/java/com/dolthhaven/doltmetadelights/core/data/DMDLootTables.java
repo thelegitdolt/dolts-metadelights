@@ -1,6 +1,8 @@
 package com.dolthhaven.doltmetadelights.core.data;
 
 import com.dolthhaven.doltmetadelights.DoltsMetadelights;
+import com.dolthhaven.doltmetadelights.utils.Consts;
+import com.dolthhaven.doltmetadelights.utils.RegUtil;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -9,6 +11,7 @@ import net.minecraft.core.WritableRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
@@ -47,7 +50,7 @@ public class DMDLootTables extends LootTableProvider{
     protected static final LootItemCondition.Builder HAS_KNIFE = MatchTool.toolMatches(ItemPredicate.Builder.item().of(ModTags.Items.KNIVES));
     protected static final LootItemCondition.Builder IS_SHEARS = CanItemPerformAbility.canItemPerformAbility(ItemAbilities.SHEARS_HARVEST);
 
-    static List<Block> BLOCK_BLACKLIST = ImmutableList.of(BOP_GLOWSHROOM_COLONY.get(), TOADSTOOL_COLONY.get());
+    static List<Block> BLOCK_BLACKLIST = ImmutableList.of();
 
     public DMDLootTables(GatherDataEvent event) {
         super(event.getGenerator().getPackOutput(), BuiltInLootTables.all(), ImmutableList.of(
@@ -70,7 +73,9 @@ public class DMDLootTables extends LootTableProvider{
         @Override
         protected void generate() {
             this.dropSelf(MULCH_BAG.get());
-            this.colony(GLOW_SHROOM_COLONY);
+            this.colony(GLOW_SHROOM_COLONY, Consts.GLOW_SHROOM.loc());
+            this.colony(BOP_GLOWSHROOM_COLONY, Consts.GLOWSHROOM_BOP.loc());
+            this.colony(TOADSTOOL_COLONY, Consts.TOADSTOOL_BOP.loc());
 
             this.cheese(WARDENZOLA);
         }
@@ -80,9 +85,9 @@ public class DMDLootTables extends LootTableProvider{
             return BuiltInRegistries.BLOCK.stream().filter(block -> DoltsMetadelights.MOD_ID.equals(BuiltInRegistries.BLOCK.getKey(block).getNamespace())).filter(block -> !BLOCK_BLACKLIST.contains(block)).collect(Collectors.toSet());
         }
 
-        private void colony(Supplier<? extends Block> block) {
+        private void colony(Supplier<? extends Block> block, ResourceLocation shroomLoc) {
             if (block.get() instanceof MushroomColonyBlock colony) {
-                Item shroomItem = colony.mushroomType.value();
+                Item shroomItem = RegUtil.item(shroomLoc);
                 Item colonyItem = colony.asItem();
                 this.add(block.get(), LootTable.lootTable()
                         .withPool(LootPool.lootPool()

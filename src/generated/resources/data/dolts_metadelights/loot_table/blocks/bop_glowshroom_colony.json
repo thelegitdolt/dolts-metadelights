@@ -11,7 +11,7 @@
               "type": "minecraft:item",
               "conditions": [
                 {
-                  "block": "dolts_metadelights:glow_shroom_colony",
+                  "block": "dolts_metadelights:bop_glowshroom_colony",
                   "condition": "minecraft:block_state_property",
                   "properties": {
                     "age": "3"
@@ -22,7 +22,7 @@
                   "condition": "neoforge:can_item_perform_ability"
                 }
               ],
-              "name": "dolts_metadelights:glow_shroom_colony"
+              "name": "dolts_metadelights:bop_glowshroom_colony"
             },
             {
               "type": "minecraft:item",
@@ -31,7 +31,7 @@
                   "add": false,
                   "conditions": [
                     {
-                      "block": "dolts_metadelights:glow_shroom_colony",
+                      "block": "dolts_metadelights:bop_glowshroom_colony",
                       "condition": "minecraft:block_state_property",
                       "properties": {
                         "age": "0"
@@ -45,7 +45,7 @@
                   "add": false,
                   "conditions": [
                     {
-                      "block": "dolts_metadelights:glow_shroom_colony",
+                      "block": "dolts_metadelights:bop_glowshroom_colony",
                       "condition": "minecraft:block_state_property",
                       "properties": {
                         "age": "1"
@@ -59,7 +59,7 @@
                   "add": false,
                   "conditions": [
                     {
-                      "block": "dolts_metadelights:glow_shroom_colony",
+                      "block": "dolts_metadelights:bop_glowshroom_colony",
                       "condition": "minecraft:block_state_property",
                       "properties": {
                         "age": "2"
@@ -73,7 +73,7 @@
                   "add": false,
                   "conditions": [
                     {
-                      "block": "dolts_metadelights:glow_shroom_colony",
+                      "block": "dolts_metadelights:bop_glowshroom_colony",
                       "condition": "minecraft:block_state_property",
                       "properties": {
                         "age": "3"
@@ -84,7 +84,7 @@
                   "function": "minecraft:set_count"
                 }
               ],
-              "name": "quark:glow_shroom"
+              "name": "biomesoplenty:glowshroom"
             }
           ]
         }
@@ -92,5 +92,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "dolts_metadelights:blocks/glow_shroom_colony"
+  "random_sequence": "dolts_metadelights:blocks/bop_glowshroom_colony"
 }
