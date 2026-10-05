@@ -1,0 +1,17 @@
+{
+  "type": "brewinandchewin:keg_pouring",
+  "can_fill": false,
+  "container": {
+    "count": 1,
+    "id": "minecraft:honeycomb"
+  },
+  "fluid": {
+    "amount": 1000,
+    "id": "dolts_metadelights:wardenzola"
+  },
+  "output": {
+    "count": 1,
+    "id": "dungeonsdelight:wardenzola"
+  },
+  "unit": "millibuckets"
+}

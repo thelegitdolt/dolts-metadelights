@@ -26,8 +26,10 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.yirmiri.dungeonsdelight.core.registry.DDItems;
 import umpaz.brewinandchewin.client.recipebook.FermentingBookCategory;
 import umpaz.brewinandchewin.common.registry.BnCFluids;
+import umpaz.brewinandchewin.common.registry.BnCItems;
 import umpaz.brewinandchewin.common.utility.FluidUnit;
 import umpaz.brewinandchewin.data.builder.KegFermentingRecipeBuilder;
+import umpaz.brewinandchewin.data.builder.KegPouringRecipeBuilder;
 import vectorwing.farmersdelight.common.crafting.ingredient.ItemAbilityIngredient;
 import vectorwing.farmersdelight.common.item.KnifeItem;
 import vectorwing.farmersdelight.common.registry.ModItems;
@@ -58,6 +60,7 @@ public class DMDRecipes extends BlueprintRecipeProvider {
                 .addIngredient(Items.SCULK).addIngredient(Items.SCULK).addIngredient(DDItems.ROTBULB.get())
                 .unlockedByItems("has_sculk", Items.SCULK)
                 .build(output.withConditions(wardenzola()), DoltsMetadelights.rl("fermenting/wardenzola"));
+        KegPouringRecipeBuilder.kegPouringRecipe(DMDFluids.WARDENZOLA_SOURCE.get(), 1000, DDItems.WARDENZOLA.get(), false).setFluidUnit(FluidUnit.MILLIBUCKET).withContainer(Items.HONEYCOMB).build(output);
 
         CuttingBoardRecipeBuilder.cuttingRecipe(of(DDItems.WARDENZOLA.get()), KNIVES, WARDENZOLA_WEDGE.get(), 4)
                 .save(output.withConditions(wardenzola()), DoltsMetadelights.rl("wardenzola_wedge_cut"));
