@@ -13,5 +13,8 @@
 
     "enchantment.dolts_metadelights.ballistic": "Ballistic",
 
-    "fluid_type.dolts_metadelights.wardenzola_fluid_type": "Wardenzola"
+    "fluid_type.dolts_metadelights.wardenzola_fluid_type": "Wardenzola",
+
+    "advancements.dolts_metadelights.bnc.dui.description": "Operate a mount while being more than a fair bit tipsy",
+    "advancements.dolts_metadelights.bnc.dui.title": "Not Endorsed"
 }

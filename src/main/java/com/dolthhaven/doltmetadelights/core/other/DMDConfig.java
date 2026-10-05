@@ -19,7 +19,6 @@ public class DMDConfig {
         public final ConfigValue<Boolean> hoglinMountDoesntTick;
 
         Common(ModConfigSpec.Builder builder) {
-
             builder.push("farmersdelight");
             builder.push("Ballistic");
             conqueringStar = builder.comment("If knives can receive the Ballistic enchantment, which gives them the effect of Dungeon's Delight cleavers to be thrown. REQUIRES DUNGEON's DELIGHT.").define("Cleaverfication Enchantment", false);

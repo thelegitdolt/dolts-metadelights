@@ -1,5 +1,6 @@
 package com.dolthhaven.doltmetadelights;
 
+import com.dolthhaven.doltmetadelights.core.data.DMDAdvancements;
 import com.dolthhaven.doltmetadelights.core.data.DMDLootTables;
 import com.dolthhaven.doltmetadelights.core.data.DMDRecipes;
 import com.dolthhaven.doltmetadelights.core.data.client.DMDBlockStateModel;
@@ -11,6 +12,7 @@ import com.dolthhaven.doltmetadelights.core.data.tag.DMDEnchantTags;
 import com.dolthhaven.doltmetadelights.core.data.tag.DMDItemTags;
 import com.dolthhaven.doltmetadelights.core.other.DMDConfig;
 import com.dolthhaven.doltmetadelights.core.registry.*;
+import com.dolthhaven.doltmetadelights.utils.Consts;
 import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import net.minecraft.core.HolderLookup;
@@ -32,6 +34,8 @@ import java.util.concurrent.CompletableFuture;
 @Mod(DoltsMetadelights.MOD_ID)
 public class DoltsMetadelights {
     public static final String MOD_ID = "dolts_metadelights";
+    public static final Consts.ModId WRAPPED_ID = new Consts.ModId(MOD_ID);
+
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
@@ -76,6 +80,7 @@ public class DoltsMetadelights {
         dataGen.addProvider(includeServer, new DMDLootTables(event));
         dataGen.addProvider(includeServer, new DMDRecipes(event));
         dataGen.addProvider(includeServer, new DMDEnchantTags(event, newProvider));
+        dataGen.addProvider(includeServer, DMDAdvancements.create(event, newProvider));
 
         boolean includeClient = event.includeClient();
         dataGen.addProvider(includeClient, new DMDBlockStateModel(event));
@@ -89,4 +94,6 @@ public class DoltsMetadelights {
     public static ResourceLocation rl(String path) {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
+
+
 }

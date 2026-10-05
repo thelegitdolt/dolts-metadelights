@@ -1,5 +1,7 @@
 package com.dolthhaven.doltmetadelights.utils;
 
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -34,6 +36,10 @@ public class Consts {
             return ResourceLocation.fromNamespaceAndPath(id, path);
         }
 
+        public MutableComponent translatable(String path) {
+            return Component.translatable(path.formatted(id));
+        }
+
         public ModLoadedCondition requiresLoaded() {
             return new ModLoadedCondition(id);
         }
@@ -46,9 +52,6 @@ public class Consts {
             return new BlockResource(rl(path));
         }
 
-        public void isl() {
-
-        }
     }
 
     public record ItemResource(ResourceLocation loc) {
