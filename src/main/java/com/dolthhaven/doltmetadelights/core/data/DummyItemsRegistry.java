@@ -14,16 +14,14 @@ import java.util.Set;
 
 @EventBusSubscriber(modid = DoltsMetadelights.MOD_ID)
 public class DummyItemsRegistry {
-    public static final Set<ResourceLocation> DUMMY_IDS = Set.of(
-            Consts.GLOW_SHROOM.loc(), Consts.GLOWSHROOM_BOP.loc(), Consts.TOADSTOOL_BOP.loc()
+    public static final Set<Consts.ItemResource> DUMMY_IDS = Set.of(
+            Consts.GLOW_SHROOM, Consts.GLOWSHROOM_BOP, Consts.TOADSTOOL_BOP
     );
 
     @SubscribeEvent
     public static void registerDummies(RegisterEvent event) {
         if (DatagenModLoader.isRunningDataGen()) {
-            DUMMY_IDS.forEach(id -> {
-                event.register(Registries.ITEM, id, () -> new Item(new Item.Properties()));
-            });
+            DUMMY_IDS.forEach(id -> id.registerDummy(event));
         }
     }
 }

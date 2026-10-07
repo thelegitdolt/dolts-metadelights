@@ -1,5 +1,6 @@
 package com.dolthhaven.doltmetadelights.utils;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -7,6 +8,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
+import net.neoforged.neoforge.registries.RegisterEvent;
 
 import java.util.Optional;
 
@@ -51,7 +53,6 @@ public class Consts {
         public BlockResource blockResource(String path) {
             return new BlockResource(rl(path));
         }
-
     }
 
     public record ItemResource(ResourceLocation loc) {
@@ -69,6 +70,10 @@ public class Consts {
 
         public Optional<Block> safeGetBlock() {
             return Optional.ofNullable(getBlock());
+        }
+
+        public void registerDummy(RegisterEvent event) {
+            event.register(Registries.ITEM, loc, () -> new Item(new Item.Properties()));
         }
     }
 

@@ -23,6 +23,6 @@ public class DMDDataMaps extends DataMapProvider {
                 .add(TOADSTOOL_COLONY.getId(), new Compostable(1.0f), false);
 
         this.builder(NeoForgeDataMaps.FURNACE_FUELS)
-                .add(MULCH_BAG.getId(), new FurnaceFuel(300), false);
+                .add(MULCH_BAG.getId(), new FurnaceFuel(1600), false);
     }
 }
