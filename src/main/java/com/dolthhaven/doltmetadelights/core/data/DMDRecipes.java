@@ -11,6 +11,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -38,9 +39,10 @@ import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Supplier;
 
 import static com.dolthhaven.doltmetadelights.core.registry.DMDBlocks.MULCH_BAG;
-import static com.dolthhaven.doltmetadelights.core.registry.DMDItems.WARDENZOLA_WEDGE;
+import static com.dolthhaven.doltmetadelights.core.registry.DMDItems.*;
 import static net.minecraft.world.item.crafting.Ingredient.of;
 
 public class DMDRecipes extends BlueprintRecipeProvider {
@@ -66,6 +68,15 @@ public class DMDRecipes extends BlueprintRecipeProvider {
                 .save(output.withConditions(wardenzola()), DoltsMetadelights.rl("wardenzola_wedge_cut"));
         CuttingBoardRecipeBuilder.cuttingRecipe(of(DDItems.WARDENZOLA.get()), KNIVES, DDItems.WARDENZOLA_CRUMBLES.get(), 2)
                 .save(output.withConditions(not(wardenzola())), DoltsMetadelights.rl("wardenzola_crumble_cut"));
+
+        colonyCuttingRecipe(GLOW_SHROOM_COLONY, Consts.GLOW_SHROOM, Consts.QUARK, output);
+        colonyCuttingRecipe(BOP_GLOWSHROOM_COLONY, Consts.GLOWSHROOM_BOP, Consts.BOP, output);
+        colonyCuttingRecipe(TOADSTOOL_COLONY, Consts.TOADSTOOL_BOP, Consts.BOP, output);
+    }
+
+    private void colonyCuttingRecipe(Supplier<Item> colony, Consts.ItemResource mushroomLoc, Consts.ModId id, RecipeOutput output) {
+        CuttingBoardRecipeBuilder.cuttingRecipe(of(colony.get()), KNIVES, mushroomLoc.lookup(), 5)
+                .save(output.withConditions(id.requiresLoaded()), DoltsMetadelights.rl(mushroomLoc.loc().getPath() + "_colony_cutting"));
     }
 
     private static ICondition not(ICondition condition) {
