@@ -32,7 +32,7 @@ file="META-INF/accesstransformer.cfg"
 [[dependencies.${mod_id}]]
     modId="blueprint"
     type="required"
-    versionRange="[8.1.0)"
+    versionRange="[8.1.0,)"
     ordering="NONE"
     side="BOTH"
 
