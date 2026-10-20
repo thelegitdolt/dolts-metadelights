@@ -15,6 +15,10 @@ import net.yirmiri.dungeonsdelight.core.registry.DDSounds;
 import java.util.function.Consumer;
 
 public class DungeonsDelightIntegration {
+    public static void playCleaverReadySound(Level level, Player player) {
+        level.playSound(null, player, DDSounds.CLEAVER_READY.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+    }
+
     public static void makeCleaverAndThrowIt(ItemStack stack, Player player, Level level, double attackDamage, Consumer<Entity> postOps) {
         CleaverEntity cleaver = new CleaverEntity(level, player, stack.copy());
         cleaver.setItem(stack.copy());

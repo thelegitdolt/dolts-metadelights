@@ -65,7 +65,7 @@ public abstract class CoasterBlockEntityRendererMixin implements BlockEntityRend
                 ItemStack stack = itemToRender(entity, blockHitResult.getLocation().toVector3f());
                 Component customName = stack.get(DataComponents.CUSTOM_NAME);
                 if (customName != null) {
-                    renderNameTag(entity, this.font, stack.getHoverName(), poseStack, this.renderer, Vec3.atCenterOf(pos), buffer, combinedLight);
+                    renderNameTag(this.font, stack.getHoverName(), poseStack, this.renderer, Vec3.atCenterOf(pos), buffer, combinedLight);
                 }
             }
         }
@@ -116,7 +116,7 @@ public abstract class CoasterBlockEntityRendererMixin implements BlockEntityRend
         return ItemStack.EMPTY;
     }
 
-    private static void renderNameTag(CoasterBlockEntity entity, Font font, Component component, PoseStack poseStack, BlockEntityRenderDispatcher renderer, Vec3 position, MultiBufferSource buffer, int packedLight) {
+    private static void renderNameTag(Font font, Component component, PoseStack poseStack, BlockEntityRenderDispatcher renderer, Vec3 position, MultiBufferSource buffer, int packedLight) {
         double distance = renderer.camera.getPosition().distanceToSqr(position);
         if (distance > 8) return;
 
@@ -124,7 +124,6 @@ public abstract class CoasterBlockEntityRendererMixin implements BlockEntityRend
 
         poseStack.pushPose();
         poseStack.translate(0.5F, nameOffset, 0.5F);
-
         poseStack.mulPose(renderer.camera.rotation());
         poseStack.scale(0.025F, -0.025F, -0.025F);
 

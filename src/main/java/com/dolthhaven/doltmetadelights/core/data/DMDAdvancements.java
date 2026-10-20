@@ -52,6 +52,6 @@ public class DMDAdvancements implements AdvancementProvider.AdvancementGenerator
     }
 
     private static EntityPredicate.Builder reqEffectAndAmplifier(Holder<MobEffect> effect, MinMaxBounds.Ints bound) {
-        return EntityPredicate.Builder.entity().effects(new MobEffectsPredicate.Builder().and(BnCEffects.TIPSY, new MobEffectsPredicate.MobEffectInstancePredicate(bound, MinMaxBounds.Ints.ANY, Optional.empty(), Optional.empty())));
+        return EntityPredicate.Builder.entity().effects(new MobEffectsPredicate.Builder().and(effect, new MobEffectsPredicate.MobEffectInstancePredicate(bound, MinMaxBounds.Ints.ANY, Optional.empty(), Optional.empty())));
     }
 }

@@ -5,10 +5,12 @@ import com.dolthhaven.doltmetadelights.utils.ThisIsAGreatIdea;
 import com.soytutta.mynethersdelight.common.block.feasts.GhastaWithCreamBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+@Pseudo
 @Mixin(GhastaWithCreamBlock.class)
 public class GhastaWithCreamBlockMixin {
     @Inject(method = "isRandomlyTicking", at = @At("HEAD"), cancellable = true)

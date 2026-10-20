@@ -17,11 +17,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import umpaz.brewinandchewin.common.block.FieryFonduePotBlock;
 
+@Pseudo
 @Mixin(FieryFonduePotBlock.class)
 public class FieryFonduePotMixin {
     @Definition(id = "LEVEL_CAULDRON", field = "Lnet/minecraft/world/level/block/state/properties/BlockStateProperties;LEVEL_CAULDRON:Lnet/minecraft/world/level/block/state/properties/IntegerProperty;")

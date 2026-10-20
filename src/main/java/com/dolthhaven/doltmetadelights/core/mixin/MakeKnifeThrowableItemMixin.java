@@ -3,8 +3,6 @@ package com.dolthhaven.doltmetadelights.core.mixin;
 import com.dolthhaven.doltmetadelights.core.data.dataregistries.DMDEnchantments;
 import com.dolthhaven.doltmetadelights.integration.DungeonsDelightIntegration;
 import com.dolthhaven.doltmetadelights.utils.Consts;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -14,7 +12,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
-import net.yirmiri.dungeonsdelight.core.registry.DDSounds;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -30,18 +27,18 @@ public abstract class MakeKnifeThrowableItemMixin {
     public abstract int getUseDuration(ItemStack stack, LivingEntity entity);
 
     @Inject(method = "getUseAnimation", at = @At("HEAD"), cancellable = true)
-    private void hi(ItemStack stack, CallbackInfoReturnable<UseAnim> cir) {
+    private void DoltModHow$CanThrowKnife(ItemStack stack, CallbackInfoReturnable<UseAnim> cir) {
         if (DMDEnchantments.canThrowKnife(stack)) {
             cir.setReturnValue(UseAnim.BOW);
         }
     }
 
     @Inject(method = "onUseTick", at = @At("HEAD"))
-    private void sex(Level level, LivingEntity entity, ItemStack stack, int timeLeft, CallbackInfo ci) {
+    private void DoltModHow$CanThrowKnife(Level level, LivingEntity entity, ItemStack stack, int timeLeft, CallbackInfo ci) {
         if (DMDEnchantments.canThrowKnife(stack) && entity instanceof Player player) {
             int usedTicks = this.getUseDuration(stack, entity) - timeLeft;
             if (usedTicks == 32) {
-                level.playSound(null, player, DDSounds.CLEAVER_READY.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                DungeonsDelightIntegration.playCleaverReadySound(level, player);
             }
         }
     }
