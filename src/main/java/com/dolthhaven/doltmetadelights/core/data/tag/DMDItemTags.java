@@ -3,12 +3,14 @@ package com.dolthhaven.doltmetadelights.core.data.tag;
 import com.dolthhaven.doltmetadelights.DoltsMetadelights;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.yirmiri.dungeonsdelight.core.init.DDTags;
 import umpaz.brewinandchewin.common.tag.BnCTags;
 import vectorwing.farmersdelight.common.tag.ModTags;
 
+import static com.dolthhaven.doltmetadelights.core.registry.DMDItems.CHORUS_SODA;
 import static com.dolthhaven.doltmetadelights.core.registry.DMDItems.WARDENZOLA_WEDGE;
 
 public class DMDItemTags extends ItemTagsProvider {
@@ -22,5 +24,9 @@ public class DMDItemTags extends ItemTagsProvider {
 
         this.tag(BnCTags.Items.FOOD_CHEESE_WEDGE).add(WARDENZOLA_WEDGE.get());
         this.tag(DDTags.ItemT.SCULK_CHEESE).add(WARDENZOLA_WEDGE.get());
+
+        this.tag(Tags.Items.DRINK_CONTAINING_BOTTLE).add(CHORUS_SODA.get());
+        this.tag(Tags.Items.DRINKS).add(CHORUS_SODA.get());
+        this.tag(Tags.Items.DRINKS_MAGIC).add(CHORUS_SODA.get());
     }
 }

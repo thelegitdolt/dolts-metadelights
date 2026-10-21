@@ -18,6 +18,12 @@ public class DMDConfig {
         public final ConfigValue<Boolean> ghastaWithCreamDoesntRegenerate;
         public final ConfigValue<Boolean> hoglinMountDoesntTick;
 
+        // supp + FD
+        @ConfigKey("quiver_recipe")
+        public final ConfigValue<Boolean> doHackyQuiverRecipe;
+
+        public final ConfigValue<Boolean> removeOrangeVapor;
+
         Common(ModConfigSpec.Builder builder) {
             builder.push("farmersdelight");
             builder.push("Ballistic");
@@ -58,6 +64,24 @@ public class DMDConfig {
                     .define("Wardenzola Wheel", true);
             builder.pop();
 
+            builder.pop();
+
+
+            builder.push("atmospheric");
+            builder.push("Oranges");
+            removeOrangeVapor = builder.comment("If oranges can no longer be jumped on to be broken and to create a vapor cloud").define("Normal Oranges", true);
+
+            builder.pop();
+            builder.pop();
+
+
+            builder.push("supplementaries");
+            builder.push("quivers");
+
+            doHackyQuiverRecipe = builder.comment("If processing a quiver in a cutting board will eject all the arrows in that quiver")
+                    .define("Realistic Quivers", true);
+
+            builder.pop();
             builder.pop();
         }
     }

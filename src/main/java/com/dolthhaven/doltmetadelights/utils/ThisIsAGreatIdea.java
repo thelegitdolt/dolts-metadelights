@@ -3,7 +3,7 @@ package com.dolthhaven.doltmetadelights.utils;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class ThisIsAGreatIdea {
-    public static boolean tryGet(ModConfigSpec.ConfigValue<Boolean> config) {
+    public static <T> T tryGet(ModConfigSpec.ConfigValue<T> config) {
         try {
             return config.get();
         } catch (IllegalStateException ignored){}

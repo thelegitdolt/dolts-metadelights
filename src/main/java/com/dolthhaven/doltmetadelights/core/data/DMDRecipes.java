@@ -11,6 +11,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -56,6 +57,11 @@ public class DMDRecipes extends BlueprintRecipeProvider {
     protected void buildRecipes(RecipeOutput output, HolderLookup.Provider holderLookup) {
         storageRecipes(output, RecipeCategory.MISC, ModItems.TREE_BARK.get(), RecipeCategory.BUILDING_BLOCKS, MULCH_BAG.asItem());
         twoByTwoCustomLoc(output.withConditions(wardenzola()), RecipeCategory.FOOD, DDItems.WARDENZOLA.get(), WARDENZOLA_WEDGE.get(), "wardenzola_from_wedges");
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, CHORUS_SODA.get())
+                .requires(Items.GLASS_BOTTLE).requires(Items.CHORUS_FRUIT)
+                .unlockedBy("has_chorus_fruit", has(Items.CHORUS_FRUIT))
+                .save(output);
 
         KegFermentingRecipeBuilder.kegFermentingRecipe(FermentingBookCategory.MEALS, DMDFluids.WARDENZOLA_SOURCE.get(), 1000, 9600, 1.0F, 4)
                 .addFluidIngredient(Tags.Fluids.MILK, 1000, FluidUnit.MILLIBUCKET).setFluidUnit(FluidUnit.MILLIBUCKET)
