@@ -4,6 +4,7 @@ import com.dolthhaven.doltmetadelights.DoltsMetadelights;
 import com.teamabnormals.blueprint.core.data.client.BlueprintItemModelProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
+import static com.dolthhaven.doltmetadelights.core.registry.DMDItems.CHORUS_SODA;
 import static com.dolthhaven.doltmetadelights.core.registry.DMDItems.WARDENZOLA_WEDGE;
 
 public class DMDItemModelGen extends BlueprintItemModelProvider {
@@ -13,6 +14,6 @@ public class DMDItemModelGen extends BlueprintItemModelProvider {
 
     @Override
     protected void registerModels() {
-        generatedItem(WARDENZOLA_WEDGE);
+        generatedItem(WARDENZOLA_WEDGE, CHORUS_SODA);
     }
 }
