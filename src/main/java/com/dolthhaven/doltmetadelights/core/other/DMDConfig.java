@@ -18,9 +18,7 @@ public class DMDConfig {
         public final ConfigValue<Boolean> ghastaWithCreamDoesntRegenerate;
         public final ConfigValue<Boolean> hoglinMountDoesntTick;
 
-        // supp + FD
-        @ConfigKey("quiver_recipe")
-        public final ConfigValue<Boolean> doHackyQuiverRecipe;
+        public final ConfigValue<Boolean> hungerEffectPreventsSprint;
 
         public final ConfigValue<Boolean> removeOrangeVapor;
 
@@ -74,14 +72,10 @@ public class DMDConfig {
             builder.pop();
             builder.pop();
 
+            builder.push("Hunger Removal");
+            builder.comment("These are a series of tweaks intended for people who remove hunger from their mod. Not for the faint of heart.");
+            hungerEffectPreventsSprint = builder.comment("If having the vanilla Hunger effect should prevent the player from sprinting.").define("Hunger Prevents Sprinting", true);
 
-            builder.push("supplementaries");
-            builder.push("quivers");
-
-            doHackyQuiverRecipe = builder.comment("If processing a quiver in a cutting board will eject all the arrows in that quiver")
-                    .define("Realistic Quivers", true);
-
-            builder.pop();
             builder.pop();
         }
     }

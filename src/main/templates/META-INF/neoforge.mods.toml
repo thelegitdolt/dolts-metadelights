@@ -33,33 +33,33 @@ file="META-INF/accesstransformer.cfg"
     modId="blueprint"
     type="required"
     versionRange="[8.1.0,)"
-    ordering="NONE"
+    ordering="AFTER"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
     modId="farmersdelight"
     type="required"
     versionRange="[1.3.2,)"
-    ordering="NONE"
+    ordering="AFTER"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
     modId="dungeonsdelight"
     type="optional"
     versionRange="[1.5.0,)"
-    ordering="NONE"
+    ordering="AFTER"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
     modId="mynethersdelight"
     type="optional"
     versionRange="[1.10.0,)"
-    ordering="NONE"
+    ordering="AFTER"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
     modId="brewinandchewin"
     type="optional"
     versionRange="[4.4.0,)"
-    ordering="NONE"
+    ordering="AFTER"
     side="BOTH"

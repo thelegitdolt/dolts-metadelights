@@ -18,6 +18,7 @@ public class Consts {
     public static final ModId DUNGEONS_DELIGHT = new ModId("dungeonsdelight");
     public static final ModId MY_NETHERS_DELIGHT = new ModId("mynethersdelight");
     public static final ModId QUARK = new ModId("quark");
+    public static final ModId SUPPLEMENTARIES = new ModId("supplementaries");
 
 
     public static final ItemResource BULLET_PEPPER = MY_NETHERS_DELIGHT.itemResource("bullet_pepper");

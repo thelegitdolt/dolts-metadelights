@@ -7,6 +7,9 @@ import com.dolthhaven.doltmetadelights.core.registry.DMDLootConditions;
 import com.dolthhaven.doltmetadelights.utils.Consts;
 import com.teamabnormals.blueprint.core.api.conditions.ConfigValueCondition;
 import com.teamabnormals.blueprint.core.data.server.BlueprintRecipeProvider;
+import net.mehvahdjukaar.supplementaries.Supplementaries;
+import net.mehvahdjukaar.supplementaries.common.items.QuiverItem;
+import net.mehvahdjukaar.supplementaries.reg.ModRegistry;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -16,8 +19,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.AndCondition;
@@ -48,6 +53,7 @@ import static net.minecraft.world.item.crafting.Ingredient.of;
 
 public class DMDRecipes extends BlueprintRecipeProvider {
     private static final Ingredient KNIVES = matchesTool(KnifeItem.KNIFE_DIG, CommonTags.Items.TOOLS_KNIFE);
+    private static final Ingredient SHEARS = matchesTool(ItemAbilities.SHEARS_TRIM, Tags.Items.TOOLS_SHEAR);
 
     public DMDRecipes(GatherDataEvent event) {
         super(DoltsMetadelights.MOD_ID, event.getGenerator().getPackOutput(), event.getLookupProvider());
@@ -78,6 +84,10 @@ public class DMDRecipes extends BlueprintRecipeProvider {
         colonyCuttingRecipe(GLOW_SHROOM_COLONY, Consts.GLOW_SHROOM, Consts.QUARK, output);
         colonyCuttingRecipe(BOP_GLOWSHROOM_COLONY, Consts.GLOWSHROOM_BOP, Consts.BOP, output);
         colonyCuttingRecipe(TOADSTOOL_COLONY, Consts.TOADSTOOL_BOP, Consts.BOP, output);
+
+        CuttingBoardRecipeBuilder.cuttingRecipe(of(ModRegistry.QUIVER_ITEM.get()), SHEARS, Items.LEATHER, 2)
+                .addResultWithChance(Items.STRING,  0.5f, 2)
+                .save(output.withConditions(Consts.SUPPLEMENTARIES.requiresLoaded()), DoltsMetadelights.rl("quiver_cutting"));
     }
 
     private void colonyCuttingRecipe(Supplier<Item> colony, Consts.ItemResource mushroomLoc, Consts.ModId id, RecipeOutput output) {

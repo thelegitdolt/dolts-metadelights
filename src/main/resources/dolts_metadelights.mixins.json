@@ -15,7 +15,8 @@
     "mnd.GhastaWithCreamBlockMixin",
     "mnd.PowderyFlowerBlockMixin",
     "mnd.RichSoilMixin",
-    "mnd.ZoglinTrophyMixin"
+    "mnd.ZoglinTrophyMixin",
+    "supplementaries.CuttingBoardBlockEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
@@ -25,5 +26,8 @@
   },
   "overwrites": {
     "requireAnnotations": true
-  }
+  },
+  "client": [
+    "hungerremoval.LocalPlayerMixin"
+  ]
 }
