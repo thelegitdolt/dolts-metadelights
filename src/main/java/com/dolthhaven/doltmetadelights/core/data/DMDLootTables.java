@@ -1,6 +1,7 @@
 package com.dolthhaven.doltmetadelights.core.data;
 
 import com.dolthhaven.doltmetadelights.DoltsMetadelights;
+import com.dolthhaven.doltmetadelights.common.block.BlockWithOneString;
 import com.dolthhaven.doltmetadelights.utils.Consts;
 import com.dolthhaven.doltmetadelights.utils.RegUtil;
 import com.google.common.collect.ImmutableList;
@@ -18,6 +19,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -34,6 +36,7 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.loot.CanItemPerformAbility;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import umpaz.brewinandchewin.common.block.CheeseWheelBlock;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 import vectorwing.farmersdelight.common.tag.ModTags;
@@ -45,6 +48,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.dolthhaven.doltmetadelights.core.registry.DMDBlocks.*;
+import static net.minecraft.world.level.storage.loot.LootPool.lootPool;
+import static net.minecraft.world.level.storage.loot.LootTable.lootTable;
 
 public class DMDLootTables extends LootTableProvider{
     protected static final LootItemCondition.Builder HAS_KNIFE = MatchTool.toolMatches(ItemPredicate.Builder.item().of(ModTags.Items.KNIVES));
@@ -78,7 +83,26 @@ public class DMDLootTables extends LootTableProvider{
             this.colony(TOADSTOOL_COLONY, Consts.TOADSTOOL_BOP.loc());
 
             this.cheese(WARDENZOLA);
+
+            this.dropPottedContents(POTTED_CABBAGE.get());
+            this.dropPottedContents(POTTED_ONION.get());
+            this.dropPottedContents(POTTED_TOMATOES.get());
+
+            this.add(POTTED_STRAWBERRIES.get(), lootTable().withPool(this.applyExplosionCondition(Blocks.FLOWER_POT, lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Blocks.FLOWER_POT)))).withPool(this.applyExplosionCondition(Consts.STRAWBERRY_PIPS.lookup(), LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Consts.STRAWBERRY_PIPS.lookup())))));
+            this.add(POTTED_WHITE_STRAWBERRIES.get(), lootTable().withPool(this.applyExplosionCondition(Blocks.FLOWER_POT, lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Blocks.FLOWER_POT)))).withPool(this.applyExplosionCondition(Consts.STRAWBERRY_PIPS.lookup(), LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Consts.STRAWBERRY_PIPS.lookup())))));
         }
+
+//        private void dropReallyWeirdPottedContents(DeferredBlock<Block> block) {
+//            DoltsMetadelights.LOGGER.info("I'm REALLY sorry tslat");
+//            Block realBlock = block.get();
+//            if (realBlock instanceof BlockWithOneString stringBlock) {
+//                Item item = RegUtil.item(ResourceLocation.parse(stringBlock.getTheString()));
+//                this.add(realBlock, lootTable().withPool(this.applyExplosionCondition(Blocks.FLOWER_POT, lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Blocks.FLOWER_POT)))).withPool(this.applyExplosionCondition(item, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(item)))));
+//            } else if (realBlock instanceof FlowerPotBlock) {
+//                this.dropPottedContents(realBlock);
+//            } else throw new IllegalArgumentException("this is too weird even for this method");
+//        }
+
 
         @Override
         public Iterable<Block> getKnownBlocks() {

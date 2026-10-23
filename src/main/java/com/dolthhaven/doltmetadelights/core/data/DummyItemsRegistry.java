@@ -15,7 +15,7 @@ import java.util.Set;
 @EventBusSubscriber(modid = DoltsMetadelights.MOD_ID)
 public class DummyItemsRegistry {
     public static final Set<Consts.ItemResource> DUMMY_IDS = Set.of(
-            Consts.GLOW_SHROOM, Consts.GLOWSHROOM_BOP, Consts.TOADSTOOL_BOP
+            Consts.GLOW_SHROOM, Consts.GLOWSHROOM_BOP, Consts.TOADSTOOL_BOP, Consts.STRAWBERRY_PIPS
     );
 
     @SubscribeEvent

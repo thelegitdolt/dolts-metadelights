@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import umpaz.brewinandchewin.common.block.CheeseWheelBlock;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 
@@ -30,6 +31,9 @@ public class DMDBlockStateModel extends BlueprintBlockStateProvider {
         this.colony(TOADSTOOL_COLONY);
 
         this.cheese(WARDENZOLA);
+
+
+        customPot(POTTED_STRAWBERRIES, POTTED_WHITE_STRAWBERRIES, POTTED_ONION, POTTED_TOMATOES, POTTED_CABBAGE);
     }
 
     private void colony(Supplier<Block> blockSupplier) {
@@ -58,6 +62,15 @@ public class DMDBlockStateModel extends BlueprintBlockStateProvider {
                     .texture("particle", cheeseLoc.withSuffix("_top"));
             return ConfiguredModel.builder().modelFile(servingsCount == 0 ? thing : thing.texture("inside", cheeseLoc.withSuffix("_inside"))).build();
         });
+    }
+
+    @SafeVarargs
+    private void customPot(DeferredBlock<? extends Block>... pots) {
+        for (DeferredBlock<? extends Block> pot : pots) {
+            ResourceLocation potTexture = DoltsMetadelights.rl("block/" + name(pot.get()));
+            this.simpleBlock(pot.get(), models()
+                    .singleTexture(name(pot.get()), ResourceLocation.withDefaultNamespace("block/flower_pot_cross"), "plant", potTexture).renderType("cutout"));
+        }
     }
 
     private ResourceLocation id(Block block) {

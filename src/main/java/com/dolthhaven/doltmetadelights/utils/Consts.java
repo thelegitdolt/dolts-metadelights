@@ -17,6 +17,7 @@ public class Consts {
     public static final ModId BOP = new ModId("biomesoplenty");
     public static final ModId DUNGEONS_DELIGHT = new ModId("dungeonsdelight");
     public static final ModId MY_NETHERS_DELIGHT = new ModId("mynethersdelight");
+    public static final ModId NEAPOLITAN = new ModId("neapolitan");
     public static final ModId QUARK = new ModId("quark");
     public static final ModId SUPPLEMENTARIES = new ModId("supplementaries");
 
@@ -26,6 +27,9 @@ public class Consts {
     public static final ItemResource GLOW_SHROOM  = QUARK.itemResource("glow_shroom");
     public static final ItemResource GLOWSHROOM_BOP = BOP.itemResource("glowshroom");
     public static final ItemResource TOADSTOOL_BOP = BOP.itemResource("toadstool");
+    public static final ItemResource STRAWBERRY_PIPS = NEAPOLITAN.itemResource("strawberry_pips");
+    public static final BlockResource STRAWBERRY_BUSH = NEAPOLITAN.blockResource("strawberry_bush");
+
     public static final ResourceLocation DUNGEONS_DELIGHT_TAB = DUNGEONS_DELIGHT.rl("dungeonsdelight_tab");
 
     public static final ItemResource DD_WARDENZOLA = DUNGEONS_DELIGHT.itemResource("wardenzola");
@@ -57,6 +61,10 @@ public class Consts {
     }
 
     public record ItemResource(ResourceLocation loc) {
+        public boolean sanityCheck() {
+            return ModList.get().isLoaded(this.loc.getNamespace());
+        }
+
         public Item lookup() {
             return RegUtil.item(loc);
         }
@@ -74,11 +82,16 @@ public class Consts {
         }
 
         public void registerDummy(RegisterEvent event) {
-            event.register(Registries.ITEM, loc, () -> new Item(new Item.Properties()));
+            if (!sanityCheck())
+                event.register(Registries.ITEM, loc, () -> new Item(new Item.Properties()));
         }
     }
 
     public record BlockResource(ResourceLocation loc) {
+        public boolean sanityCheck() {
+            return ModList.get().isLoaded(this.loc.getNamespace());
+        }
+
         public Block lookup() {
             return RegUtil.block(loc);
         }
