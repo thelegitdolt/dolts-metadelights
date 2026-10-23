@@ -24,8 +24,7 @@
     "mnd.ZoglinTrophyMixin",
     "supplementaries.CuttingBoardBlockEntityMixin",
     "supplementaries.DirectionalCakeBlockMixin",
-    "supplementaries.HangingSignDisplayItemMixin",
-    "supplementaries.ItemDisplayTileMixin"
+    "supplementaries.HangingSignDisplayItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1
