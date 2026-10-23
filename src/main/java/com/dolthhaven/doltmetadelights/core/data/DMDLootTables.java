@@ -88,20 +88,20 @@ public class DMDLootTables extends LootTableProvider{
             this.dropPottedContents(POTTED_ONION.get());
             this.dropPottedContents(POTTED_TOMATOES.get());
 
-            this.add(POTTED_STRAWBERRIES.get(), lootTable().withPool(this.applyExplosionCondition(Blocks.FLOWER_POT, lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Blocks.FLOWER_POT)))).withPool(this.applyExplosionCondition(Consts.STRAWBERRY_PIPS.lookup(), LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Consts.STRAWBERRY_PIPS.lookup())))));
-            this.add(POTTED_WHITE_STRAWBERRIES.get(), lootTable().withPool(this.applyExplosionCondition(Blocks.FLOWER_POT, lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Blocks.FLOWER_POT)))).withPool(this.applyExplosionCondition(Consts.STRAWBERRY_PIPS.lookup(), LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Consts.STRAWBERRY_PIPS.lookup())))));
+            this.dropReallyWeirdPottedContents(POTTED_STRAWBERRIES);
+            this.dropReallyWeirdPottedContents(POTTED_WHITE_STRAWBERRIES);
         }
 
-//        private void dropReallyWeirdPottedContents(DeferredBlock<Block> block) {
-//            DoltsMetadelights.LOGGER.info("I'm REALLY sorry tslat");
-//            Block realBlock = block.get();
-//            if (realBlock instanceof BlockWithOneString stringBlock) {
-//                Item item = RegUtil.item(ResourceLocation.parse(stringBlock.getTheString()));
-//                this.add(realBlock, lootTable().withPool(this.applyExplosionCondition(Blocks.FLOWER_POT, lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Blocks.FLOWER_POT)))).withPool(this.applyExplosionCondition(item, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(item)))));
-//            } else if (realBlock instanceof FlowerPotBlock) {
-//                this.dropPottedContents(realBlock);
-//            } else throw new IllegalArgumentException("this is too weird even for this method");
-//        }
+        private void dropReallyWeirdPottedContents(DeferredBlock<Block> block) {
+            DoltsMetadelights.LOGGER.info("I'm REALLY sorry tslat");
+            Block realBlock = block.get();
+            if (realBlock instanceof BlockWithOneString stringBlock) {
+                Item item = RegUtil.item(ResourceLocation.parse(stringBlock.getTheString()));
+                this.add(realBlock, lootTable().withPool(this.applyExplosionCondition(Blocks.FLOWER_POT, lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Blocks.FLOWER_POT)))).withPool(this.applyExplosionCondition(item, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(item)))));
+            } else if (realBlock instanceof FlowerPotBlock) {
+                this.dropPottedContents(realBlock);
+            } else throw new IllegalArgumentException("this is too weird even for this method");
+        }
 
 
         @Override

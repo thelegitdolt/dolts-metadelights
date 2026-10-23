@@ -58,6 +58,12 @@ file="META-INF/accesstransformer.cfg"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
+    modId="neapolitan"
+    type="optional"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
     modId="brewinandchewin"
     type="optional"
     versionRange="[4.4.0,)"
