@@ -10,19 +10,20 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Optional;
+
 public class AmendmentDoubleCakeUtil {
+    // outputs the cake block and also slice item, null otherwise
     public static Pair<BlockState, Item> getCakeAndSlice(BlockState state) {
         if (state.getBlock() instanceof DoubleCakeBlock doubleCake) {
             ResourceLocation idrl = RegUtil.blockId(doubleCake);
 
             String id = idrl.getPath().replace("/double_", ":");
-            Holder<Block> block = RegUtil.blockHolder(ResourceLocation.parse(id));
-            if (block == null) return null;
-            ResourceLocation sliceLoc = block.getData(DMDDataMaps.CAKE_SLICE_MAP);
-            if (sliceLoc == null) return null;
-            Item sliceItem = RegUtil.item(sliceLoc);
-            if (sliceItem == null) return null;
-            return Pair.of(block.value().defaultBlockState(), sliceItem);
+            var block = Optional.ofNullable(RegUtil.blockHolder(ResourceLocation.parse(id)));
+            var item = block.map(blockHolder -> blockHolder.getData(DMDDataMaps.CAKE_SLICE_MAP))
+                    .map(RegUtil::item);
+            return item.isPresent() ? Pair.of(block.get().value().defaultBlockState(), item.get()) : null;
         }
         return null;
     }
