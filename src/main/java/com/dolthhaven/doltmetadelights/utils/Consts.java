@@ -13,6 +13,8 @@ import net.neoforged.neoforge.registries.RegisterEvent;
 import java.util.Optional;
 
 public class Consts {
+    public static final ModId ABNORMALS_DELIGHT = new ModId("abnormals_delight");
+    public static final ModId AMENDMENTS = new ModId("amendments");
     public static final ModId BnC = new ModId("brewinandchewin");
     public static final ModId BOP = new ModId("biomesoplenty");
     public static final ModId DUNGEONS_DELIGHT = new ModId("dungeonsdelight");

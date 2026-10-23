@@ -7,7 +7,7 @@ import com.dolthhaven.doltmetadelights.core.data.client.DMDBlockStateModel;
 import com.dolthhaven.doltmetadelights.core.data.client.DMDItemModelGen;
 import com.dolthhaven.doltmetadelights.core.data.dataregistries.DMDEnchantments;
 import com.dolthhaven.doltmetadelights.core.data.tag.DMDBlockTags;
-import com.dolthhaven.doltmetadelights.core.data.tag.DMDDataMaps;
+import com.dolthhaven.doltmetadelights.core.data.tag.DMDDataMapsProvider;
 import com.dolthhaven.doltmetadelights.core.data.tag.DMDEnchantTags;
 import com.dolthhaven.doltmetadelights.core.data.tag.DMDItemTags;
 import com.dolthhaven.doltmetadelights.core.other.DMDConfig;
@@ -76,7 +76,7 @@ public class DoltsMetadelights {
         DMDBlockTags taggies = new DMDBlockTags(event);
         dataGen.addProvider(includeServer, taggies);
         dataGen.addProvider(includeServer, new DMDItemTags(event, taggies));
-        dataGen.addProvider(includeServer, new DMDDataMaps(event));
+        dataGen.addProvider(includeServer, new DMDDataMapsProvider(event));
         dataGen.addProvider(includeServer, new DMDLootTables(event));
         dataGen.addProvider(includeServer, new DMDRecipes(event));
         dataGen.addProvider(includeServer, new DMDEnchantTags(event, newProvider));

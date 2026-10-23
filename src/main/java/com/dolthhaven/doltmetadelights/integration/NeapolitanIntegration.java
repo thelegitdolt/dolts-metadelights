@@ -1,4 +1,4 @@
-package com.dolthhaven.doltmetadelights.intergration;
+package com.dolthhaven.doltmetadelights.integration;
 
 import com.teamabnormals.neapolitan.core.NeapolitanConfig;
 import net.minecraft.core.BlockPos;

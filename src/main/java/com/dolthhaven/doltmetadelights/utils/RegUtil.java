@@ -36,6 +36,12 @@ public class RegUtil {
         } else return null;
     }
 
+    public static Holder<Block> blockHolder(ResourceLocation location) {
+        if (BuiltInRegistries.BLOCK.keySet().contains(location)) {
+            return BuiltInRegistries.BLOCK.getHolder(location).orElse(null);
+        } else return null;
+    }
+
     public static Block block(String namespace, String path) {
         return block(ResourceLocation.fromNamespaceAndPath(namespace, path));
     }

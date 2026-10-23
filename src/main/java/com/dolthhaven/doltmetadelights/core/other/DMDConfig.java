@@ -16,7 +16,11 @@ public class DMDConfig {
         public final ConfigValue<Boolean> killBulletPepperPlacement;
         public final ConfigValue<Boolean> frogsAreNotStupid;
         public final ConfigValue<Boolean> ghastaWithCreamDoesntRegenerate;
+        public final ConfigValue<Boolean> persistenceEffectChecksHealth;
         public final ConfigValue<Boolean> hoglinMountDoesntTick;
+        public final ConfigValue<Boolean> strawberriesHealingTweaks;
+        public final ConfigValue<Boolean> sweepingHungerNerfs;
+        public final ConfigValue<Boolean> quarkFoodTooltipBecomesHeart;
 
         public final ConfigValue<Boolean> hungerEffectPreventsSprint;
 
@@ -68,14 +72,16 @@ public class DMDConfig {
             builder.push("atmospheric");
             builder.push("Oranges");
             removeOrangeVapor = builder.comment("If oranges can no longer be jumped on to be broken and to create a vapor cloud").define("Normal Oranges", true);
-
             builder.pop();
             builder.pop();
 
             builder.push("Hunger Removal");
             builder.comment("These are a series of tweaks intended for people who remove hunger from their mod. Not for the faint of heart.");
+            persistenceEffectChecksHealth = builder.comment("The persistence effect from atmospheric will check your speed according to how low your health is instead of your hunger.").define("Other Criterion for Persistence", true);
+            quarkFoodTooltipBecomesHeart = builder.comment("If quark's food tooltip will display hearts instead of chicken shanks.").define("Hunger is gone", false);
             hungerEffectPreventsSprint = builder.comment("If having the vanilla Hunger effect should prevent the player from sprinting.").define("Hunger Prevents Sprinting", true);
-
+            strawberriesHealingTweaks = builder.comment("If strawberries from neapolitan should heal you instantly instead of over time.").define("Instahealing Strawbs", false);
+            sweepingHungerNerfs = builder.comment("If the nutrition of all foods should be nerfed so they give less hunger").define("Sweeping Nerfs to Hunger", false);
             builder.pop();
         }
     }

@@ -1,28 +1,22 @@
 package com.dolthhaven.doltmetadelights.core.data.tag;
 
-import net.minecraft.core.HolderLookup;
-import net.neoforged.neoforge.common.data.DataMapProvider;
-import net.neoforged.neoforge.data.event.GatherDataEvent;
-import net.neoforged.neoforge.registries.datamaps.builtin.Compostable;
-import net.neoforged.neoforge.registries.datamaps.builtin.FurnaceFuel;
-import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
+import com.dolthhaven.doltmetadelights.DoltsMetadelights;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.registries.datamaps.DataMapType;
+import net.neoforged.neoforge.registries.datamaps.RegisterDataMapTypesEvent;
 
-import static com.dolthhaven.doltmetadelights.core.registry.DMDBlocks.*;
+@EventBusSubscriber(modid = DoltsMetadelights.MOD_ID)
+public class DMDDataMaps {
+    public static final DataMapType<Block, ResourceLocation> CAKE_SLICE_MAP = DataMapType
+            .builder(DoltsMetadelights.rl("cake_slice_map"), Registries.BLOCK, ResourceLocation.CODEC)
+            .build();
 
-public class DMDDataMaps extends DataMapProvider {
-    public DMDDataMaps(GatherDataEvent event) {
-        super(event.getGenerator().getPackOutput(), event.getLookupProvider());
-    }
-
-    @Override
-    protected void gather(HolderLookup.Provider provider) {
-        this.builder(NeoForgeDataMaps.COMPOSTABLES)
-                .add(MULCH_BAG.getId(), new Compostable(1.0f), false)
-                .add(GLOW_SHROOM_COLONY.getId(), new Compostable(1.0f), false)
-                .add(BOP_GLOWSHROOM_COLONY.getId(), new Compostable(1.0f), false)
-                .add(TOADSTOOL_COLONY.getId(), new Compostable(1.0f), false);
-
-        this.builder(NeoForgeDataMaps.FURNACE_FUELS)
-                .add(MULCH_BAG.getId(), new FurnaceFuel(1600), false);
+    @SubscribeEvent
+    public static void registerDataMaps(RegisterDataMapTypesEvent event) {
+        event.register(CAKE_SLICE_MAP);
     }
 }

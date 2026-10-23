@@ -7,17 +7,25 @@
     "ItemMixin",
     "KnifeItemMixin",
     "MakeKnifeThrowableItemMixin",
+    "atmospheric.OrangeMixin",
     "bnc.CoasterBlockEntityRendererMixin",
     "bnc.CoasterBlockMixin",
     "bnc.CoasterEntityMixin",
     "bnc.FieryFonduePotMixin",
     "bnc.ItemStackMixin",
+    "hungerremoval.HealingItemMixin",
+    "hungerremoval.HealthRegenerationComponentMixin",
+    "hungerremoval.PersistenceMixin",
+    "hungerremoval.QuarkFoodTooltipMixin",
     "mnd.ConsumableItemMixin",
     "mnd.GhastaWithCreamBlockMixin",
     "mnd.PowderyFlowerBlockMixin",
     "mnd.RichSoilMixin",
     "mnd.ZoglinTrophyMixin",
-    "supplementaries.CuttingBoardBlockEntityMixin"
+    "supplementaries.CuttingBoardBlockEntityMixin",
+    "supplementaries.DirectionalCakeBlockMixin",
+    "supplementaries.HangingSignDisplayItemMixin",
+    "supplementaries.ItemDisplayTileMixin"
   ],
   "injectors": {
     "defaultRequire": 1

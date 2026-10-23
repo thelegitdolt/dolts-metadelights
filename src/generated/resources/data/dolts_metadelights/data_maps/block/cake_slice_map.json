@@ -1,0 +1,12 @@
+{
+  "values": {
+    "dungeonsdelight:monster_cake": "dungeonsdelight:monster_cake_slice",
+    "mynethersdelight:magma_cake_block": "mynethersdelight:magma_cake_slice",
+    "neapolitan:adzuki_cake": "abnormals_delight:adzuki_cake_slice",
+    "neapolitan:banana_cake": "abnormals_delight:banana_cake_slice",
+    "neapolitan:chocolate_cake": "abnormals_delight:chocolate_cake_slice",
+    "neapolitan:mint_cake": "abnormals_delight:mint_cake_slice",
+    "neapolitan:strawberry_cake": "abnormals_delight:strawberry_cake_slice",
+    "neapolitan:vanilla_cake": "abnormals_delight:vanilla_cake_slice"
+  }
+}

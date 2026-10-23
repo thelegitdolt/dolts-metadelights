@@ -10,6 +10,5 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Neapolitan.class)
 public class Debug {
     @Inject(method = "dataSetup", at = @At("HEAD"), cancellable = true)
-    private void kys(GatherDataEvent event, CallbackInfo ci) {ci
-            .cancel();}
+    private void kys(GatherDataEvent event, CallbackInfo ci) {ci.cancel();}
 }
