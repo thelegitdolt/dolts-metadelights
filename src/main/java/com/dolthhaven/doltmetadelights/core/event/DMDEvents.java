@@ -74,7 +74,7 @@ public class DMDEvents {
 
     @SubscribeEvent
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
-        if (Consts.AMENDMENTS.loaded()) return;
+        if (!Consts.AMENDMENTS.loaded()) return;
         BlockState state = event.getState();
         Player player = event.getPlayer();
         if (player.getMainHandItem().is(ModTags.Items.KNIVES) && AmendmentDoubleCakeUtil.isDoubleCakeBlock(state)) {
