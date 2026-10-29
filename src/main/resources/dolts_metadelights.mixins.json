@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "Debug",
+    "DispenserBlockMixin",
     "ItemMixin",
     "KnifeItemMixin",
     "MakeKnifeThrowableItemMixin",
