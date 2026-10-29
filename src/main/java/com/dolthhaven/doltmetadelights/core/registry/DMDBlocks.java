@@ -15,6 +15,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
@@ -30,7 +31,6 @@ public class DMDBlocks {
 
     public static final DeferredBlock<Block> MULCH_BAG = BLOCKS.createBlock("mulch_bag", () ->
             new BlueprintDirectionalBlock(BlockBehaviour.Properties.ofFullCopy(ModBlocks.RICE_BAG.get()).mapColor(MapColor.COLOR_BROWN)));
-
 
     public static final DeferredBlock<Block> WARDENZOLA = BLOCKS.createBlock("wardenzola", Consts.BnC.loaded() ?
             DMDBnCIntegration.WARDENZOLA : () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CAKE)));

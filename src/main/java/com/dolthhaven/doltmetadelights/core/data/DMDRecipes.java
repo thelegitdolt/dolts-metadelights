@@ -13,11 +13,14 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.common.Tags;
@@ -56,6 +59,7 @@ public class DMDRecipes extends BlueprintRecipeProvider {
     @Override
     protected void buildRecipes(RecipeOutput output, HolderLookup.Provider holderLookup) {
         storageRecipes(output, RecipeCategory.MISC, ModItems.TREE_BARK.get(), RecipeCategory.BUILDING_BLOCKS, MULCH_BAG.asItem());
+
         twoByTwoCustomLoc(output.withConditions(wardenzola()), RecipeCategory.FOOD, DDItems.WARDENZOLA.get(), WARDENZOLA_WEDGE.get(), "wardenzola_from_wedges");
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, CHORUS_SODA.get())
