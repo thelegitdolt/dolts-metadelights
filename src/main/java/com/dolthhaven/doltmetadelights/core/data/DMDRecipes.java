@@ -88,8 +88,8 @@ public class DMDRecipes extends BlueprintRecipeProvider {
                 .save(output.withConditions(Consts.SUPPLEMENTARIES.requiresLoaded()), DoltsMetadelights.rl("quiver_cutting"));
     }
 
-    private void colonyCuttingRecipe(Supplier<Item> colony, Consts.ItemResource mushroomLoc, Consts.ModId id, RecipeOutput output) {
-        CuttingBoardRecipeBuilder.cuttingRecipe(of(colony.get()), KNIVES, mushroomLoc.lookup(), 5)
+    private void colonyCuttingRecipe(Supplier<Item> colony, Consts.ModResource mushroomLoc, Consts.ModId id, RecipeOutput output) {
+        CuttingBoardRecipeBuilder.cuttingRecipe(of(colony.get()), KNIVES, mushroomLoc.item(), 5)
                 .save(output.withConditions(id.requiresLoaded()), DoltsMetadelights.rl(mushroomLoc.loc().getPath() + "_colony_cutting"));
     }
 

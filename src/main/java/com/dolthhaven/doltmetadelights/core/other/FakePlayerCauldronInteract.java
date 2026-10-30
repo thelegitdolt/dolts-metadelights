@@ -1,7 +1,7 @@
 package com.dolthhaven.doltmetadelights.core.other;
 
+import com.mojang.authlib.GameProfile;
 import net.mehvahdjukaar.moonlight.api.util.DispenserHelper;
-import net.mehvahdjukaar.moonlight.api.util.FakePlayerManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.cauldron.CauldronInteraction;
@@ -10,16 +10,18 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.ItemInteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.DispenserBlock;
-import net.minecraft.world.level.block.entity.DispenserBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.common.util.FakePlayer;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.UUID;
 
 public class FakePlayerCauldronInteract extends DispenserHelper.AdditionalDispenserBehavior {
     private final CauldronInteraction interaction;
+    private static final UUID CAULDRON_PLAYER_UUID = UUID.fromString("3ccf22a7-d48a-40d9-b695-109b7723279a");
 
     public FakePlayerCauldronInteract(CauldronInteraction interaction, Item item) {
         super(item);
@@ -32,7 +34,7 @@ public class FakePlayerCauldronInteract extends DispenserHelper.AdditionalDispen
         ServerLevel level = source.level();
         Direction dir = source.state().getValue(DispenserBlock.FACING);
         BlockPos pos = source.pos().relative(dir);
-        Player fp = FakePlayerManager.getDefault(level);
+        FakePlayer fp = new FakePlayer(level, new GameProfile(CAULDRON_PLAYER_UUID, "dolt_mod_how_fake"));
 
         ItemStack dispenseStack = stack.split(1);
         fp.setItemInHand(InteractionHand.MAIN_HAND, dispenseStack);
@@ -49,8 +51,5 @@ public class FakePlayerCauldronInteract extends DispenserHelper.AdditionalDispen
         } else {
             return result.consumesAction() ? InteractionResultHolder.sidedSuccess(remainderStack, false) : InteractionResultHolder.fail(remainderStack);
         }
-
-
-
     }
 }

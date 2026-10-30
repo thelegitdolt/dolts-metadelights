@@ -1,16 +1,28 @@
 package com.dolthhaven.doltmetadelights.core.mixin;
 
 import com.dolthhaven.doltmetadelights.core.data.dataregistries.DMDEnchantments;
+import com.dolthhaven.doltmetadelights.core.other.DMDTrackedData;
 import com.dolthhaven.doltmetadelights.integration.DungeonsDelightIntegration;
 import com.dolthhaven.doltmetadelights.utils.Consts;
+import com.dolthhaven.doltmetadelights.utils.RegUtil;
+import com.teamabnormals.blueprint.common.world.storage.tracking.IDataManager;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -20,6 +32,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import vectorwing.farmersdelight.common.item.KnifeItem;
+
+import java.util.Optional;
 
 @Mixin(Item.class)
 public abstract class MakeKnifeThrowableItemMixin {
@@ -73,13 +87,44 @@ public abstract class MakeKnifeThrowableItemMixin {
     private void throwCleaver(Level level, LivingEntity entity, ItemStack stack, int timeLeft) {
         assert Consts.DUNGEONS_DELIGHT.loaded();
 
-        if (entity instanceof Player player && stack.getItem() instanceof KnifeItem knifeItem) {
+        if (entity instanceof Player player && stack.getItem() instanceof TieredItem knifeItem) {
+            boolean isDesolateDagger = RegUtil.itemId(stack.getItem()).equals(Consts.DESOLATE_DAGGER.loc());
+            if (!(knifeItem instanceof KnifeItem || isDesolateDagger)) return;
+
             if (knifeItem.getUseDuration(stack, entity) - timeLeft >= 6 && !player.getCooldowns().isOnCooldown(stack.getItem())) {
                 if (!level.isClientSide) {
-                    DungeonsDelightIntegration.makeCleaverAndThrowIt(stack, player, level, knifeItem.getTier().getAttackDamageBonus(), cleaver -> {});
+                    DungeonsDelightIntegration.makeCleaverAndThrowIt(stack, player, level, knifeItem.getTier().getAttackDamageBonus(), cleaver -> {
+                        if (isDesolateDagger) {
+                            saveToCleaver(cleaver, stack, level);
+                        }
+                    });
                 }
                 player.awardStat(Stats.ITEM_USED.get(stack.getItem()));
             }
+        }
+    }
+
+    @Unique
+    private static void saveToCleaver(Entity entity, ItemStack stack, Level level) {
+        IDataManager cleaverData = (IDataManager) entity;
+        cleaverData.setValue(DMDTrackedData.IS_DESOLATE_DAGGER, true);
+        cleaverData.setValue(DMDTrackedData.LEVEL_IMPENDING_STAB, (byte) getEnchantmentLevel(level, stack, Consts.IMPENDING_STAB));
+        cleaverData.setValue(DMDTrackedData.LEVEL_DOUBLE_STAB, (byte) getEnchantmentLevel(level, stack, Consts.DOUBLE_STAB));
+        cleaverData.setValue(DMDTrackedData.LEVEL_SATED_BLADE, (byte) getEnchantmentLevel(level, stack, Consts.SATED_BLADE));
+    }
+
+    @Unique
+    private static int getEnchantmentLevel(Level level, ItemStack stack, ResourceLocation enchantmentKey) {
+        if (level != null && stack != null && !stack.isEmpty()) {
+            Optional<Registry<Enchantment>> lookup = level.registryAccess().registry(Registries.ENCHANTMENT);
+            if (lookup.isEmpty()) {
+                return 0;
+            } else {
+                Optional<Holder.Reference<Enchantment>> holder = lookup.get().getHolder(enchantmentKey);
+                return holder.map(stack::getEnchantmentLevel).orElse(0);
+            }
+        } else {
+            return 0;
         }
     }
 

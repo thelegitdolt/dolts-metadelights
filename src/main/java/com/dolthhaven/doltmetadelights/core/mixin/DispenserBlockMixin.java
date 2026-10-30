@@ -1,6 +1,7 @@
 package com.dolthhaven.doltmetadelights.core.mixin;
 
 import com.dolthhaven.doltmetadelights.core.other.FakePlayerCauldronInteract;
+import com.dolthhaven.doltmetadelights.utils.Consts;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
@@ -16,7 +17,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-
 @Mixin(DispenserBlock.class)
 public abstract class DispenserBlockMixin {
     @WrapOperation(
@@ -27,13 +27,14 @@ public abstract class DispenserBlockMixin {
             )
     )
     public DispenseItemBehavior onCuttingBoardDispenseFromInject(DispenserBlock instance, Level level, ItemStack stack, Operation<DispenseItemBehavior> original, @Local(argsOnly = true) BlockPos pos, @Local BlockSource source) {
-        BlockState state = level.getBlockState(pos.relative(source.state().getValue(DispenserBlock.FACING)));
+        if (Consts.SUPPLEMENTARIES.loaded()) {
+            BlockState state = level.getBlockState(pos.relative(source.state().getValue(DispenserBlock.FACING)));
 
-        if (state.getBlock() instanceof AbstractCauldronBlock cauldron) {
-            CauldronInteraction.InteractionMap interactions = cauldron.interactions;
-            CauldronInteraction relevantInteraction = interactions.map().get(stack.getItem());
-            if (relevantInteraction != null) {
-                return new FakePlayerCauldronInteract(relevantInteraction, stack.getItem());
+            if (state.getBlock() instanceof AbstractCauldronBlock cauldron) {
+                CauldronInteraction interaction = cauldron.interactions.map().get(stack.getItem());
+                if (interaction != null) {
+                    return new FakePlayerCauldronInteract(interaction, stack.getItem());
+                }
             }
         }
         return original.call(instance, level, stack);

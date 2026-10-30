@@ -10,18 +10,19 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.loading.DatagenModLoader;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @EventBusSubscriber(modid = DoltsMetadelights.MOD_ID)
 public class DummyItemsRegistry {
-    public static final Set<Consts.ItemResource> DUMMY_IDS = Set.of(
-            Consts.GLOW_SHROOM, Consts.GLOWSHROOM_BOP, Consts.TOADSTOOL_BOP, Consts.STRAWBERRY_PIPS
-    );
-
+    public static final Set<Consts.ModResource> DUMMY_IDS = new HashSet<>();
     @SubscribeEvent
     public static void registerDummies(RegisterEvent event) {
         if (DatagenModLoader.isRunningDataGen()) {
-            DUMMY_IDS.forEach(id -> id.registerDummy(event));
+            DUMMY_IDS.forEach(resource -> {
+                if (!resource.exists())
+                    event.register(Registries.ITEM, reg -> reg.register(resource.loc(), new Item(new Item.Properties())));
+            });
         }
     }
 }

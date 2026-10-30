@@ -3,6 +3,7 @@ package com.dolthhaven.doltmetadelights.utils;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
@@ -25,9 +26,12 @@ public class RegUtil {
         return BuiltInRegistries.ITEM.getHolder(location).orElse(item.builtInRegistryHolder());
     }
 
-
     public static Holder<Item> itemHolder(String namespace, String path) {
         return itemHolder(ResourceLocation.fromNamespaceAndPath(namespace, path));
+    }
+
+    public static ResourceLocation entityId(EntityType<?> type) {
+        return BuiltInRegistries.ENTITY_TYPE.getKey(type);
     }
 
     public static Block block(ResourceLocation location) {
