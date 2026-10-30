@@ -68,6 +68,8 @@ public class DMDItems {
         return stack -> (BlockSubRegistryHelper.areModsLoaded(modids) && of(item).test(stack));
     }
 
+
+
     public static boolean dungeonsDelightPredicate(BuildCreativeModeTabContentsEvent event) {
         return event.getTabKey().location().equals(Consts.DUNGEONS_DELIGHT_TAB);
     }

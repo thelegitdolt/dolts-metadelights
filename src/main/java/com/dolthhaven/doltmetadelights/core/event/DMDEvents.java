@@ -39,7 +39,7 @@ public class DMDEvents {
             return;
 
         ItemStack stack = event.getItemStack();
-        Item bulletPepper = Consts.BULLET_PEPPER.item();
+        Item bulletPepper = Consts.BULLET_PEPPER.lookup();
         if (bulletPepper != null && stack.is(bulletPepper)) {
             event.setUseItem(TriState.FALSE);
         }
@@ -54,7 +54,7 @@ public class DMDEvents {
             BlockPos pos = event.getPos();
             BlockState state = level.getBlockState(pos);
 
-            Item strawberryPip = Consts.STRAWBERRY_PIPS.item();
+            Item strawberryPip = Consts.STRAWBERRY_PIPS.lookup();
             if (state.is(Blocks.FLOWER_POT) && stack.is(strawberryPip)) {
                 BlockState newState = (NeapolitanIntegration.isWhiteStrawberry(level, pos) ?
                         DMDBlocks.POTTED_WHITE_STRAWBERRIES : DMDBlocks.POTTED_STRAWBERRIES).get().defaultBlockState();
@@ -89,7 +89,7 @@ public class DMDEvents {
 
     @SubscribeEvent
     private static void changeDefaultItemProperties(ModifyDefaultComponentsEvent event) {
-        Consts.DD_WARDENZOLA.item$().ifPresent(item -> event.modify(item, builder -> {
+        Consts.DD_WARDENZOLA.safeLookup().ifPresent(item -> event.modify(item, builder -> {
             if (Consts.BnC.loaded()) builder.remove(DataComponents.FOOD);
         }));
 

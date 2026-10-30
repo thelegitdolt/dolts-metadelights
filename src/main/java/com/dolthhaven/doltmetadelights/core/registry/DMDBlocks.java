@@ -50,9 +50,9 @@ public class DMDBlocks {
     public static final DeferredBlock<Block> POTTED_STRAWBERRIES = customPot("strawberries", Consts.STRAWBERRY_PIPS, Consts.STRAWBERRY_BUSH);
     public static final DeferredBlock<Block> POTTED_WHITE_STRAWBERRIES = customPot("white_strawberries", Consts.STRAWBERRY_PIPS, Consts.STRAWBERRY_BUSH);
 
-    private static DeferredBlock<Block> customPot(String name, Consts.ModResource resource, Consts.ModResource block) {
-        if (resource.exists()){
-            return BLOCKS.createBlockNoItem("potted_" + name, () -> new FlowerPotBlock(block.block(), PropertyUtil.flowerPot()));
+    private static DeferredBlock<Block> customPot(String name, Consts.ItemResource resource, Consts.BlockResource block) {
+        if (resource.sanityCheck()){
+            return BLOCKS.createBlockNoItem("potted_" + name, () -> new FlowerPotBlock(block.lookup(), PropertyUtil.flowerPot()));
         }
         return BLOCKS.createBlockNoItem("potted_" + name, () -> new BlockWithOneString(resource.loc().toString(), PropertyUtil.flowerPot()));
     }

@@ -9,7 +9,9 @@ import java.util.Set;
 
 public class DMDMixinPlugin implements IMixinConfigPlugin {
     @Override
-    public void onLoad(String mixinPackage) {}
+    public void onLoad(String mixinPackage) {
+
+    }
 
     private static boolean supplementariesLoaded() {
         try {
@@ -27,7 +29,7 @@ public class DMDMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if (mixinClassName.equals("com.dolthhaven.doltmetadelights.core.mixin.supplementaries.CuttingBoardBlockEntityMixin")) {
+        if (targetClassName.equals("com.dolthhaven.doltmetadelights.core.mixin.supplementaries.CuttingBoardBlockEntityMixin")) {
             return supplementariesLoaded();
         }
         return true;
@@ -40,7 +42,7 @@ public class DMDMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public List<String> getMixins() {
-        return null;
+        return List.of();
     }
 
     @Override

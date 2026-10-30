@@ -11,7 +11,6 @@ import com.dolthhaven.doltmetadelights.core.data.tag.DMDDataMapsProvider;
 import com.dolthhaven.doltmetadelights.core.data.tag.DMDEnchantTags;
 import com.dolthhaven.doltmetadelights.core.data.tag.DMDItemTags;
 import com.dolthhaven.doltmetadelights.core.other.DMDConfig;
-import com.dolthhaven.doltmetadelights.core.other.DMDTrackedData;
 import com.dolthhaven.doltmetadelights.core.registry.*;
 import com.dolthhaven.doltmetadelights.utils.Consts;
 import com.mojang.logging.LogUtils;
@@ -48,7 +47,6 @@ public class DoltsMetadelights {
         bus.addListener(this::dataSetup);
 
         modContainer.registerConfig(ModConfig.Type.COMMON, DMDConfig.COMMON_SPEC);
-        DMDTrackedData.registerTrackedData();
     }
 
     private static void registerToAllRegistries(IEventBus bus) {

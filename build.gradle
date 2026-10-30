@@ -91,13 +91,13 @@ dependencies {
     implementation "com.teamabnormals:blueprint:${project.minecraft_version}-${project.blueprint}"
     implementation "maven.modrinth:farmers-delight:${project.fd}"
     implementation "maven.modrinth:brewin-and-chewin:${project.bnc}"
-    implementation "maven.modrinth:runiclib:${project.runiclib}"
     implementation "maven.modrinth:dungeons_delight:${project.dungeonsdelight}"
     implementation "maven.modrinth:supplementaries:${project.supp}"
     implementation "maven.modrinth:amendments:${project.amendments}"
 //    implementation "maven.modrinth:melancholic_hunger:${project.melancholicHunger}"
     implementation "maven.modrinth:neapolitan:${project.neapolitan}"
     implementation "maven.modrinth:moonlight:${project.moonlight}"
+    implementation "maven.modrinth:runiclib:${project.runiclib}"
     implementation "maven.modrinth:my-nethers-delight:${project.mnd}"
 }
 
